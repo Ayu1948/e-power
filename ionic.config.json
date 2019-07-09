@@ -1,5 +1,7 @@
 {
   "name": "e-power",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
