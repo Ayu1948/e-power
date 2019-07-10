@@ -1,8 +1,12 @@
 <ion-content>
   <!-- <vg-fullscreen></vg-fullscreen> -->
-    <div class="content">
-      <div class="mask" (click)="onVideoClick()"></div>
-      <vg-player class="video-container" (onPlayerReady)="onPlayerReady($event)">
+  <div class="content">
+    <div class="mask" (click)="onVideoClick()"></div>
+    <div class="mv">
+      <vg-player
+        class="video-container"
+        (onPlayerReady)="onPlayerReady($event)"
+      >
         <vg-overlay-play></vg-overlay-play>
         <vg-buffering></vg-buffering>
         <video
@@ -26,4 +30,5 @@
         <button (click)="skip()">跳过</button>
       </div>
     </div>
+  </div>
 </ion-content>
