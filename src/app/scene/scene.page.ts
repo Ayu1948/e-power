@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { VgAPI } from 'videogular2/core';
+import { Component, ViewChild } from '@angular/core';
+import { VgAPI, VgPlayer } from 'videogular2/core';
 
 @Component({
   selector: 'app-scene',
@@ -7,26 +7,29 @@ import { VgAPI } from 'videogular2/core';
   styleUrls: ['scene.page.scss']
 })
 export class ScenePage {
+  @ViewChild(VgPlayer) vgPlayer: VgPlayer;
   api: VgAPI;
+  firstFlag = false;
   showBtn = false;
   skipBtn = false;
   constructor() {}
+
   onPlayerReady(api: VgAPI) {
     let flag1 = false;
     let flag2 = false;
     this.api = api;
-    // this.api.play();
+    this.api.play();
     this.api.getDefaultMedia().subscriptions.timeUpdate.subscribe(() => {
       if (!this.skipBtn) {
-        if (this.api.getDefaultMedia().currentTime > 5 && !flag1) {
+        if (this.api.getDefaultMedia().currentTime > 11 && !flag1) {
           this.api.pause();
-          alert('啊呀～下雨啦');
+          // alert('时间快来不及啦');
           flag1 = true;
           this.showBtn = true;
         }
-        if (this.api.getDefaultMedia().currentTime > 15 && !flag2) {
+        if (this.api.getDefaultMedia().currentTime > 16.5 && !flag2) {
           this.api.pause();
-          alert('终于到了');
+          // alert('终于到了');
           flag2 = true;
           this.showBtn = true;
         }
@@ -45,5 +48,21 @@ export class ScenePage {
   skip() {
     this.api.getDefaultMedia().currentTime = 100;
     this.skipBtn = true;
+  }
+  toggleFullscreen($event) {
+    console.log($event);
+  }
+
+  onVideoClick() {
+    console.log(123);
+    if (!this.firstFlag) {
+      this.firstFlag = true;
+      this.continue();
+    }
+  }
+  ngAfterViewInit(): void {
+    this.vgPlayer.fsAPI.onChangeFullscreen.subscribe(event => {
+      this.toggleFullscreen(event);
+    });
   }
 }

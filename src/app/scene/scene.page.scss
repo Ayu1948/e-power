@@ -2,38 +2,20 @@
   max-height: 35vh;
   overflow: hidden;
 }
-ion-content {
-  position: relative;
+.content {
+  position: fixed;
   width: 100%;
   height: 100%;
-  background: #000;
-  .mv {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    vg-player {
-      position: absolute;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto;
-      // width: 7.5rem;
-      // height: 14.65rem;
-      video {
-        width: 100%;
-        height: 100%;
-        object-fit: fill;
-      }
-    }
-  }
+}
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: initial;
 }
 
 .btn-box {
   position: absolute;
-  bottom: 15%;
+  bottom: 20%;
   left: 0;
   z-index: 999;
   width: 100%;
@@ -50,4 +32,10 @@ ion-content {
   &.show {
     visibility: visible;
   }
+}
+.mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 998;
 }

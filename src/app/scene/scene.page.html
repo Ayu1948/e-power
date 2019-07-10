@@ -1,29 +1,29 @@
 <ion-content>
   <!-- <vg-fullscreen></vg-fullscreen> -->
-  <div class="mv">
-    <vg-player class="video-container" (onPlayerReady)="onPlayerReady($event)">
-      <vg-overlay-play></vg-overlay-play>
-      <vg-buffering></vg-buffering>
-      <video
-        [vgMedia]="media"
-        #media
-        preload="auto"
-        playsinline
-        webkit-playsinline
-        playsinline="true"
-        x5-video-player-type="h5"
-        x5-video-player-fullscreen="true"
-        width="100%"
-        height="100%"
-        preload="auto"
-        poster=""
-      >
-        <source src="assets/video/account.mp4" type="video/mp4" />
-      </video>
-    </vg-player>
-    <div [ngClass]="{ 'btn-box': true, show: showBtn }">
-      <button (click)="continue()">继续</button>
-      <button (click)="skip()">跳过</button>
+    <div class="content">
+      <div class="mask" (click)="onVideoClick()"></div>
+      <vg-player class="video-container" (onPlayerReady)="onPlayerReady($event)">
+        <vg-overlay-play></vg-overlay-play>
+        <vg-buffering></vg-buffering>
+        <video
+          [vgMedia]="media"
+          #media
+          preload="auto"
+          playsinline
+          webkit-playsinline
+          playsinline="true"
+          x5-video-player-type="h5"
+          x5-video-player-fullscreen="true"
+          width="100%"
+          height="100%"
+          poster
+        >
+          <source src="assets/video/account.mp4" type="video/mp4" />
+        </video>
+      </vg-player>
+      <div [ngClass]="{ 'btn-box': true, show: showBtn }">
+        <button (click)="continue()">继续</button>
+        <button (click)="skip()">跳过</button>
+      </div>
     </div>
-  </div>
 </ion-content>
