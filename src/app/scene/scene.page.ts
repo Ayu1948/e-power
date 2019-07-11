@@ -61,6 +61,9 @@ export class ScenePage {
       this.continue();
     }
   }
+  jump() {
+    window.location.replace('/draw');
+  }
   ngAfterViewInit(): void {
     this.vgPlayer.fsAPI.onChangeFullscreen.subscribe(event => {
       this.toggleFullscreen(event);

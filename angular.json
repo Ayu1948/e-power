@@ -42,7 +42,7 @@
                 "input": "src/app/app.scss"
               }
             ],
-            "scripts": ["src/assets/createjs.js"],
+            "scripts": [],
             "es5BrowserSupport": true
           },
           "configurations": {
