@@ -36,7 +36,8 @@ export class ScenePage {
       }
     });
     this.api.getDefaultMedia().subscriptions.ended.subscribe(() => {
-      alert('终于到我了');
+      this.skipBtn = true;
+      // alert('终于到我了');
       // Set the video to the beginning
       // this.api.getDefaultMedia().currentTime = 0;
     });

@@ -9,6 +9,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ScenePage } from './scene/scene.page';
+import { DrawPage } from './draw/draw.page';
+
 // import { VideoPlayer } from '@ionic-native/video-player/ngx';
 
 import { VgCoreModule } from 'videogular2/core';
@@ -16,7 +18,7 @@ import { VgControlsModule } from 'videogular2/controls';
 import { VgOverlayPlayModule } from 'videogular2/overlay-play';
 import { VgBufferingModule } from 'videogular2/buffering';
 @NgModule({
-  declarations: [AppComponent, ScenePage],
+  declarations: [AppComponent, ScenePage, DrawPage],
   entryComponents: [],
   imports: [
     BrowserModule,

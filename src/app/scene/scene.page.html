@@ -1,7 +1,6 @@
 <ion-content>
   <!-- <vg-fullscreen></vg-fullscreen> -->
   <div class="content">
-    <div class="mask" (click)="onVideoClick()"></div>
     <div class="mv">
       <vg-player
         class="video-container"
@@ -25,9 +24,26 @@
           <source src="assets/video/account.mp4" type="video/mp4" />
         </video>
       </vg-player>
-      <div [ngClass]="{ 'btn-box': true, show: showBtn }">
-        <button (click)="continue()">继续</button>
-        <button (click)="skip()">跳过</button>
+      <div class="mask" (click)="onVideoClick()"></div>
+      <div [ngClass]="{ 'mask-wrap': true, show: showBtn || skipBtn }">
+        <div [ngClass]="{ 'btn-box': true, show: showBtn && !skipBtn }">
+          <div class="button" (click)="continue()">继续</div>
+          <div class="button" (click)="skip()">跳过</div>
+        </div>
+        <div [ngClass]="{ 'badge-box': true, show: skipBtn }">
+          <div class="panel">
+            <span class="title"></span>
+            <div class="badge-wrap">
+              <span class="badge"></span>
+              <span class="badge"></span>
+              <span class="badge"></span>
+            </div>
+            <p>
+              你获取了一次抽奖机会<br/>去抽奖吧！
+            </p>
+            <div class="button" routerLink="/draw">继续玩</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
