@@ -22,14 +22,54 @@
     //   background-size: cover;
     // }
     .pointer {
-      width: 1.4rem;
-      height: 1.68rem;
-      background: url(../../assets/images/draw_pointer.png) 0 0 no-repeat;
-      background-size: cover;
+      width: 1.96rem;
+      height: 1.96rem;
+      background: url(../../assets/images/draw_pointer.png) center 0 no-repeat;
+      background-size: 1.4rem 1.68rem;
       position: absolute;
       top: 4.49rem;
-      left: 3.14rem;
+      left: 2.86rem;
+      transform: rotating 1s ease-in-out infinite;
+      -moz-animation: rotating 1s ease-in-out infinite; /* Firefox */
+      -webkit-animation: rotating 1s ease-in-out infinite; /* Safari 和 Chrome */
+      -o-animation: rotating 1s ease-in-out infinite; /* Opera */
     }
+  }
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes rotating /* Firefox */ {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes rotating /* Safari 和 Chrome */ {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes rotating /* Opera */ {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 #drawView {
