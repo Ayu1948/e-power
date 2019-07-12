@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ScenePage } from './scene/scene.page';
 import { DrawPage } from './draw/draw.page';
+import { HttpClientModule } from '@angular/common/http';
 
 // import { VideoPlayer } from '@ionic-native/video-player/ngx';
 
@@ -21,6 +22,7 @@ import { VgBufferingModule } from 'videogular2/buffering';
   declarations: [AppComponent, ScenePage, DrawPage],
   entryComponents: [],
   imports: [
+    HttpClientModule,
     BrowserModule,
     VgCoreModule,
     VgControlsModule,

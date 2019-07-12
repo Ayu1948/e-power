@@ -6,4 +6,21 @@
     </div>
   </div> -->
   <canvas id="drawView" width="750" height="1200"></canvas>
+  <div id="pop" [ngClass]="{ show: popShow }">
+    <div class="wrap" [ngClass]="{ pity: popFlag, lucky: !popFlag }">
+      <div *ngIf="popFlag; then pityTpl; else luckTpl"></div>
+      <ng-template #pityTpl>
+        <span class="title"></span>
+        <p>很遗憾！<br />离中奖就差一步之遥</p>
+        <div class="button">分享获取机会</div>
+      </ng-template>
+      <ng-template #luckTpl>
+        <span class="title"></span>
+        <span class="award"></span>
+        <p>恭喜你！<br />获得{{award.name}}</p>
+        <div class="button">马上去领取</div>
+      </ng-template>
+      <div class="close" (click)="close()"></div>
+    </div>
+  </div>
 </ion-content>

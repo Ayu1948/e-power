@@ -11,16 +11,6 @@
     transform: translate(-50%, -50%);
     background: url(../../assets/images/draw_bg.png) center center no-repeat;
     background-size: cover;
-    // .panel {
-    //   width: 4.4rem;
-    //   height: 4.4rem;
-    //   position: absolute;
-    //   top: 50%;
-    //   left: 50%;
-    //   transform: translate(-50%, -50%);
-    //   background: url(../../assets/images/draw_panel.png) 0 0 no-repeat;
-    //   background-size: cover;
-    // }
     .pointer {
       width: 1.96rem;
       height: 1.96rem;
@@ -72,16 +62,98 @@
     transform: rotate(360deg);
   }
 }
+
 #drawView {
-  // position: fixed;
-  // width: 100%;
-  // height: 100%;
   width: 7.5rem;
   height: 12rem;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  // background: url(../../assets/images/draw_bg.png) center center no-repeat;
-  // background-size: cover;
+}
+
+#pop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba($color: #000000, $alpha: 0.6);
+  display: none;
+  .wrap {
+    width: 4.41rem;
+    height: 6.08rem;
+    background: url(../../assets/images/pop_bg.png) 0 0 no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    &.lucky {
+      span {
+        display: block;
+        margin: 0 auto;
+      }
+      .title {
+        width: 4rem;
+        height: 1.1rem;
+        margin-top: 0.38rem;
+        background: url(../../assets/images/pop_tit_lucky.png) 0 0 no-repeat;
+        background-size: cover;
+      }
+      .award {
+        height: 2.02rem;
+        margin-top: 0.21rem;
+        background: url(../../assets/images/draw_bg.png) 0 0 no-repeat;
+        background-size: cover;
+      }
+      p {
+        font-size: 0.34rem;
+        text-align: center;
+        color: #fff;
+        line-height: 0.48rem;
+        margin: 0;
+      }
+    }
+    &.pity {
+      .title {
+        width: 2.16rem;
+        height: 0.73rem;
+        background: url(../../assets/images/pop_tit_pity.png) 0 0 no-repeat;
+        background-size: cover;
+        display: block;
+        margin: 0.32rem auto 0;
+      }
+      p {
+        font-size: 0.34rem;
+        line-height: 0.48rem;
+        color: #fff;
+        margin: 1.17rem 0 1.8rem;
+        text-align: center;
+      }
+    }
+    .button {
+      width: 3.55rem;
+      height: 0.79rem;
+      background: url(../../assets/images/pop_btn.png) 0 0 no-repeat;
+      background-size: contain;
+      display: block;
+      margin: 0.32rem auto 0;
+      font-size: 0.34rem;
+      color: #fff;
+      line-height: 0.78rem;
+      text-align: center;
+    }
+    .close {
+      width: 0.66rem;
+      height: 0.66rem;
+      position: absolute;
+      left: 50%;
+      bottom: -1rem;
+      transform: translateX(-50%);
+      background: url(../../assets/images/pop_close.png) 0 0 no-repeat;
+    background-size: cover;
+    }
+  }
+  &.show {
+    display: block;
+  }
 }
