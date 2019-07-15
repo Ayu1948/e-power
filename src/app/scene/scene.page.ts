@@ -7,37 +7,70 @@ import { VgAPI, VgPlayer } from 'videogular2/core';
   styleUrls: ['scene.page.scss']
 })
 export class ScenePage {
-  @ViewChild(VgPlayer) vgPlayer: VgPlayer;
   api: VgAPI;
+  // 0 包租婆 1 退休大爷 2 会计师
+  scenceId = 0;
   firstFlag = false;
   showBtn = false;
   skipBtn = false;
-  constructor() {}
-
+  constructor() {
+    const href = window.location.href;
+    this.scenceId = Number(href.substring(href.indexOf('/scene/') + 7));
+    console.log(this.scenceId);
+  }
+  // ngOnInit() {
+  //   console.log(333);
+  // }
   onPlayerReady(api: VgAPI) {
+    // console.log(111);
     let flag1 = false;
     let flag2 = false;
     this.api = api;
     this.api.play();
     this.api.getDefaultMedia().subscriptions.timeUpdate.subscribe(() => {
       if (!this.skipBtn) {
-        if (this.api.getDefaultMedia().currentTime > 11 && !flag1) {
-          this.api.pause();
-          // alert('时间快来不及啦');
-          flag1 = true;
-          this.showBtn = true;
-        }
-        if (this.api.getDefaultMedia().currentTime > 16.5 && !flag2) {
-          this.api.pause();
-          // alert('终于到了');
-          flag2 = true;
-          this.showBtn = true;
+        switch (this.scenceId) {
+          case 1:
+            if (this.api.getDefaultMedia().currentTime > 7.5 && !flag1) {
+              this.api.pause();
+              flag1 = true;
+              this.showBtn = true;
+            }
+            if (this.api.getDefaultMedia().currentTime > 19.5 && !flag2) {
+              this.api.pause();
+              flag2 = true;
+              this.showBtn = true;
+            }
+            break;
+          case 2:
+            if (this.api.getDefaultMedia().currentTime > 11 && !flag1) {
+              this.api.pause();
+              flag1 = true;
+              this.showBtn = true;
+            }
+            if (this.api.getDefaultMedia().currentTime > 16.5 && !flag2) {
+              this.api.pause();
+              flag2 = true;
+              this.showBtn = true;
+            }
+            break;
+          default:
+            if (this.api.getDefaultMedia().currentTime > 6 && !flag1) {
+              this.api.pause();
+              flag1 = true;
+              this.showBtn = true;
+            }
+            if (this.api.getDefaultMedia().currentTime > 20 && !flag2) {
+              this.api.pause();
+              flag2 = true;
+              this.showBtn = true;
+            }
+            break;
         }
       }
     });
     this.api.getDefaultMedia().subscriptions.ended.subscribe(() => {
       this.skipBtn = true;
-      // alert('终于到我了');
       // Set the video to the beginning
       // this.api.getDefaultMedia().currentTime = 0;
     });
@@ -47,7 +80,8 @@ export class ScenePage {
     this.showBtn = false;
   }
   skip() {
-    this.api.getDefaultMedia().currentTime = 100;
+    this.api.getDefaultMedia().currentTime = 30;
+    console.log(this.api.getDefaultMedia().duration);
     this.skipBtn = true;
   }
   toggleFullscreen($event) {
@@ -61,12 +95,11 @@ export class ScenePage {
       this.continue();
     }
   }
-  jump() {
-    window.location.replace('/draw');
-  }
-  ngAfterViewInit(): void {
-    this.vgPlayer.fsAPI.onChangeFullscreen.subscribe(event => {
-      this.toggleFullscreen(event);
-    });
+  jump(id) {
+    if (id < 0) {
+      window.location.replace('/draw');
+    } else {
+      window.location.replace('/scene/' + id);
+    }
   }
 }

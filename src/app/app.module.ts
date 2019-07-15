@@ -8,6 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomePage } from './home/home.page';
 import { ScenePage } from './scene/scene.page';
 import { DrawPage } from './draw/draw.page';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,7 +20,7 @@ import { VgControlsModule } from 'videogular2/controls';
 import { VgOverlayPlayModule } from 'videogular2/overlay-play';
 import { VgBufferingModule } from 'videogular2/buffering';
 @NgModule({
-  declarations: [AppComponent, ScenePage, DrawPage],
+  declarations: [AppComponent, HomePage, ScenePage, DrawPage],
   entryComponents: [],
   imports: [
     HttpClientModule,

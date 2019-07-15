@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+import { HomePage } from './home/home.page';
 import { ScenePage } from './scene/scene.page';
 import { DrawPage } from './draw/draw.page';
 
 const routes: Routes = [
   // { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
-  { path: '', component: ScenePage },
+  { path: '', component: HomePage },
+  { path: 'scene/:id', component: ScenePage },
   { path: 'draw', component: DrawPage }
 ];
 @NgModule({

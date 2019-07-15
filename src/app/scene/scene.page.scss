@@ -82,10 +82,10 @@
       height: 11.7rem;
       margin-left: -5.6rem;
       transition: all 0.3s;
-      transform: shinning 3s infinite;
-      -moz-animation: shinning 3s infinite; /* Firefox */
-      -webkit-animation: shinning 3s infinite; /* Safari 和 Chrome */
-      -o-animation: shinning 3s infinite; /* Opera */
+      // transform: shinning 1s infinite;
+      // -moz-animation: shinning 1s infinite; /* Firefox */
+      // -webkit-animation: shinning 1s infinite; /* Safari 和 Chrome */
+      // -o-animation: shinning 1s infinite; /* Opera */
     }
     &::after {
       content: '';
@@ -170,40 +170,48 @@
 @keyframes shinning {
   0%,
   100% {
-    transform: rotate(-15deg);
+    // transform: rotate(-15deg);
+    opacity: 1;
   }
   50% {
-    transform: rotate(15deg);
+    // transform: rotate(15deg);
+    opacity: 0.2;
   }
 }
 
 @-moz-keyframes shinning /* Firefox */ {
   0%,
   100% {
-    transform: rotate(-15deg);
+    // transform: rotate(-15deg);
+    opacity: 1;
   }
   50% {
-    transform: rotate(15deg);
+    // transform: rotate(15deg);
+    opacity: 0.2;
   }
 }
 
 @-webkit-keyframes shinning /* Safari 和 Chrome */ {
   0%,
   100% {
-    transform: rotate(-15deg);
+    // transform: rotate(-15deg);
+    opacity: 1;
   }
   50% {
-    transform: rotate(15deg);
+    // transform: rotate(15deg);
+    opacity: 0.2;
   }
 }
 
 @-o-keyframes shinning /* Opera */ {
   0%,
   100% {
-    transform: rotate(-15deg);
+    // transform: rotate(-15deg);
+    opacity: 1;
   }
   50% {
-    transform: rotate(15deg);
+    // transform: rotate(15deg);
+    opacity: 0.2;
   }
 }
 .mask {
