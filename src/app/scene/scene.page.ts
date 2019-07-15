@@ -1,6 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { VgAPI, VgPlayer } from 'videogular2/core';
 
+declare const wx: any;
+declare const WeixinJSBridge: any;
+
 @Component({
   selector: 'app-scene',
   templateUrl: 'scene.page.html',
@@ -13,15 +16,22 @@ export class ScenePage {
   firstFlag = false;
   showBtn = false;
   skipBtn = false;
+  music;
   constructor() {
     const href = window.location.href;
     this.scenceId = Number(href.substring(href.indexOf('/scene/') + 7));
-    console.log(this.scenceId);
   }
-  // ngOnInit() {
-  //   console.log(333);
-  // }
+  ngOnInit() {
+    this.music = document.getElementById('music' + this.scenceId);
+    // WeixinJSBridge.invoke('getNetworkType', {}, e => {
+    //   this.music.play();
+    // });
+    // if (typeof window.WeixinJSBridge == 'undefined') {
+    //   this.music.play();
+    // }
+  }
   onPlayerReady(api: VgAPI) {
+    this.music.play();
     // console.log(111);
     let flag1 = false;
     let flag2 = false;
@@ -77,10 +87,11 @@ export class ScenePage {
   }
   continue() {
     this.api.play();
+    this.music.play();
     this.showBtn = false;
   }
   skip() {
-    this.api.getDefaultMedia().currentTime = 30;
+    this.api.getDefaultMedia().currentTime = 28;
     console.log(this.api.getDefaultMedia().duration);
     this.skipBtn = true;
   }
@@ -93,6 +104,19 @@ export class ScenePage {
     if (!this.firstFlag) {
       this.firstFlag = true;
       this.continue();
+    }
+  }
+  // 播放暂停
+  playPause() {
+    // var btn = document.getElementById('playbtn');
+    if (this.music.paused) {
+      this.music.play();
+      // btn.style.background =
+      //   'url(images/music/pictures/pause.png) no-repeat 10px'; // 改变播放暂停键的图标
+    } else {
+      this.music.pause(); // 停止音乐
+      // btn.style.background =
+      //   'url(images/music/pictures/play.png) no-repeat 10px';
     }
   }
   jump(id) {
