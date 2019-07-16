@@ -11,7 +11,9 @@ import { AppComponent } from './app.component';
 import { HomePage } from './home/home.page';
 import { ScenePage } from './scene/scene.page';
 import { DrawPage } from './draw/draw.page';
+import { AwardPage } from './award/award.page';
 import { HttpClientModule } from '@angular/common/http';
+import { InfoPage } from './info/info.page';
 
 // import { VideoPlayer } from '@ionic-native/video-player/ngx';
 
@@ -20,7 +22,14 @@ import { VgControlsModule } from 'videogular2/controls';
 import { VgOverlayPlayModule } from 'videogular2/overlay-play';
 import { VgBufferingModule } from 'videogular2/buffering';
 @NgModule({
-  declarations: [AppComponent, HomePage, ScenePage, DrawPage],
+  declarations: [
+    AppComponent,
+    HomePage,
+    ScenePage,
+    DrawPage,
+    AwardPage,
+    InfoPage
+  ],
   entryComponents: [],
   imports: [
     HttpClientModule,

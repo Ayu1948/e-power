@@ -37,8 +37,8 @@ export class DrawPage {
         '28px PingFang',
         '#FFC038'
       );
-      txt.setTransform(316, 906);
-      account.setTransform(387, 906);
+      txt.setTransform(307, 949);
+      account.setTransform(377, 949);
       stage.addChild(bg, txt, account);
       stage.update();
     };
@@ -47,7 +47,7 @@ export class DrawPage {
       pointerImg.src = 'assets/images/draw_pointer.png';
       pointerImg.onload = () => {
         const pointer = new createjs.Bitmap(pointerImg);
-        pointer.setTransform(384, 543, 1, 1, 0, 0, 0, 70, 98);
+        pointer.setTransform(375, 604, 1, 1, 0, 0, 0, 70, 98);
         let checking = false;
         pointer.on('mousedown', e => {
           if (checking) {
@@ -70,9 +70,9 @@ export class DrawPage {
               // const dataArr = [0, 1, 2, 3, 4, 5];
               // const data = dataArr[Math.floor(Math.random() * dataArr.length)];
               if (this.luckFlag) {
-                angle = (360 / 6) * this.award.level + 360 * 15;
+                angle = (360 / 8) * this.award.level + 360 * 15;
               } else {
-                angle = (360 / 6) * 5 + 360 * 15;
+                angle = (360 / 8) * 5 + 360 * 15;
               }
               createjs.Tween.get(pointer)
                 .to({ rotation: angle }, 5000, createjs.Ease.getPowInOut(4))

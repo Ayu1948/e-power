@@ -1,0 +1,19 @@
+<ion-content>
+  <div class="content">
+    <div class="wrap">
+      <div class="card" [ngClass]="'award' + awardId">
+        <span class="img-box"
+          ><img [src]="awardList[awardId].img" alt=""
+        /></span>
+        <h4>{{ awardList[awardId].name }}</h4>
+        <span>某某某提供</span>
+        <p>请在规定时间内领取</p>
+        <a routerLink="/info">领 取</a>
+      </div>
+      <div class="tip">
+        <b>使用说明</b>
+        <p>{{ awardList[awardId].tip }}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

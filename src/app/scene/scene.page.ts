@@ -17,22 +17,21 @@ export class ScenePage {
   showBtn = false;
   skipBtn = false;
   music;
+  musicList = [
+    '../../assets/audio/landlord.mp3',
+    '../../assets/audio/grandpa.mp3',
+    '../../assets/audio/accountant.mp3'
+  ];
+  getFlag = [false, false, false];
   constructor() {
     const href = window.location.href;
     this.scenceId = Number(href.substring(href.indexOf('/scene/') + 7));
   }
   ngOnInit() {
-    this.music = document.getElementById('music' + this.scenceId);
-    // WeixinJSBridge.invoke('getNetworkType', {}, e => {
-    //   this.music.play();
-    // });
-    // if (typeof window.WeixinJSBridge == 'undefined') {
-    //   this.music.play();
-    // }
+    this.music = document.getElementById('music');
   }
   onPlayerReady(api: VgAPI) {
     this.music.play();
-    // console.log(111);
     let flag1 = false;
     let flag2 = false;
     this.api = api;
@@ -81,6 +80,7 @@ export class ScenePage {
     });
     this.api.getDefaultMedia().subscriptions.ended.subscribe(() => {
       this.skipBtn = true;
+      this.getFlag[this.scenceId] = true;
       // Set the video to the beginning
       // this.api.getDefaultMedia().currentTime = 0;
     });
@@ -94,6 +94,7 @@ export class ScenePage {
     this.api.getDefaultMedia().currentTime = 28;
     console.log(this.api.getDefaultMedia().duration);
     this.skipBtn = true;
+    this.getFlag[this.scenceId] = true;
   }
   toggleFullscreen($event) {
     console.log($event);

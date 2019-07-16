@@ -27,9 +27,9 @@
           <source *ngSwitchCase='2' src="assets/video/accountant.mp4" type="video/mp4" />
         </video>
       </vg-player>
-      <audio src="../../assets/audio/landlord.mp3" id="music0" preload loop></audio>
-      <audio src="../../assets/audio/grandpa.mp3" id="music1" preload loop></audio>
-      <audio src="../../assets/audio/accountant.mp3" id="music2" preload loop></audio>
+      <audio [src]="musicList[scenceId]" id="music" preload autoplay loop></audio>
+      <!-- <audio src="../../assets/audio/grandpa.mp3" id="music1" preload loop></audio>
+      <audio src="../../assets/audio/accountant.mp3" id="music2" preload loop></audio> -->
       <div class="mask" (click)="onVideoClick()"></div>
       <div [ngClass]="{ 'mask-wrap': true, show: showBtn || skipBtn }">
         <div [ngClass]="{ 'btn-box': true, show: showBtn && !skipBtn }">
@@ -40,9 +40,9 @@
           <div class="panel">
             <span class="title"></span>
             <div class="badge-wrap">
-              <span class="badge" (click)="jump(0)"></span>
-              <span class="badge" (click)="jump(1)"></span>
-              <span class="badge" (click)="jump(2)"></span>
+              <span class="badge" [ngClass]="{'get': getFlag[0]}" (click)="jump(0)"></span>
+              <span class="badge" [ngClass]="{'get': getFlag[1]}" (click)="jump(1)"></span>
+              <span class="badge" [ngClass]="{'get': getFlag[2]}" (click)="jump(2)"></span>
             </div>
             <p>
               你获取了一次抽奖机会<br/>去抽奖吧！
