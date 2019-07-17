@@ -1,0 +1,56 @@
+<ion-content>
+  <!-- <vg-fullscreen></vg-fullscreen> -->
+  <div class="content">
+    <div class="mv">
+      <vg-player
+        class="video-container"
+        (onPlayerReady)="onPlayerReady($event)"
+      >
+        <vg-overlay-play></vg-overlay-play>
+        <vg-buffering></vg-buffering>
+        <video
+          [vgMedia]="media"
+          #media
+          preload="auto"
+          playsinline
+          webkit-playsinline
+          playsinline="true"
+          x5-video-player-type="h5"
+          x5-video-player-fullscreen="true"
+          width="100%"
+          height="100%"
+          poster
+          [ngSwitch]="scenceId"
+        >
+          <source *ngSwitchDefault src="assets/video/landlord.mp4" type="video/mp4" />
+          <source *ngSwitchCase='1' src="assets/video/grandpa.mp4" type="video/mp4" />
+          <source *ngSwitchCase='2' src="assets/video/accountant.mp4" type="video/mp4" />
+        </video>
+      </vg-player>
+      <audio [src]="musicList[scenceId]" id="music" preload autoplay loop></audio>
+      <!-- <audio src="../../assets/audio/grandpa.mp3" id="music1" preload loop></audio>
+      <audio src="../../assets/audio/accountant.mp3" id="music2" preload loop></audio> -->
+      <div class="mask" (click)="onVideoClick()"></div>
+      <div [ngClass]="{ 'mask-wrap': true, show: showBtn || skipBtn }">
+        <div [ngClass]="{ 'btn-box': true, show: showBtn && !skipBtn }">
+          <div class="button" (click)="continue()">继续</div>
+          <div class="button" (click)="skip()">跳过</div>
+        </div>
+        <div [ngClass]="{ 'badge-box': true, show: skipBtn }">
+          <div class="panel">
+            <span class="title"></span>
+            <div class="badge-wrap">
+              <span class="badge" [ngClass]="{'get': getFlag[0]}" (click)="jump(0)"></span>
+              <span class="badge" [ngClass]="{'get': getFlag[1]}" (click)="jump(1)"></span>
+              <span class="badge" [ngClass]="{'get': getFlag[2]}" (click)="jump(2)"></span>
+            </div>
+            <p>
+              你获取了一次抽奖机会<br/>去抽奖吧！
+            </p>
+            <div class="button" (click)="jump(-1)">继续玩</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

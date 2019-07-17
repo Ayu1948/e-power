@@ -1,0 +1,110 @@
+.content {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  &::before {
+    width: 100%;
+    height: 5.08rem;
+    content: '';
+    background: linear-gradient(
+      45deg,
+      rgba(47, 227, 211, 1),
+      rgba(89, 198, 241, 1)
+    );
+    position: absolute;
+    z-index: -1;
+  }
+  .wrap {
+    width: 6.83rem;
+    height: 10.12rem;
+    display: block;
+    margin: 0.58rem auto 0;
+    background: #f4f4f4;
+    border-radius: 0.1rem;
+    box-shadow: 0px 3px 16px 0px rgba(6, 66, 126, 0.16);
+    .card {
+      width: 100%;
+      height: 5.9rem;
+      display: block;
+      background: #fff;
+      border-radius: 0.1rem;
+      text-align: center;
+      padding-top: 0.37rem;
+      .img-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2.37rem;
+        img {
+          width: 2.76rem;
+          height: 1.73rem;
+          display: block;
+          margin: 0 auto;
+        }
+      }
+      h4 {
+        font-size: 0.32rem;
+        color: #343434;
+        margin: 0.14rem auto 0.22rem;
+      }
+      span {
+        font-size: 0.22rem;
+        color: #999;
+        display: block;
+      }
+      p {
+        font-size: 0.24rem;
+        color: #9b9b9b;
+        margin: 0.15rem auto 0.24rem;
+      }
+      a {
+        width: 6.3rem;
+        height: 1rem;
+        line-height: 1rem;
+        background: #ffbf27;
+        border-radius: 0.5rem;
+        text-align: center;
+        font-size: 0.32rem;
+        color: #fff;
+        display: block;
+        margin: 0 auto;
+        text-decoration: none;
+      }
+      &.award0 .img-box {
+        img {
+          width: 3.91rem;
+          height: 2.37rem;
+        }
+      }
+      &.award1 .img-box {
+        img {
+          width: 3.36rem;
+          height: 2.07rem;
+        }
+      }
+      &.award2 .img-box {
+        img {
+          width: 4.21rem;
+          height: 1.49rem;
+        }
+      }
+    }
+    .tip {
+      width: 100%;
+      padding: 0 0.35rem;
+      b {
+        font-size: 0.32rem;
+        color: #333;
+        display: block;
+        margin: 0.35rem 0 0.3rem;
+      }
+      p {
+        font-size: 0.26rem;
+        color: #999;
+        line-height: 1.5;
+        // font-weight: bold;
+      }
+    }
+  }
+}
