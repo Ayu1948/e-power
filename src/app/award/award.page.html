@@ -2,13 +2,26 @@
   <div class="content">
     <div class="wrap">
       <div class="card" [ngClass]="'award' + awardId">
-        <span class="img-box"
-          ><img [src]="awardList[awardId].img" alt=""
-        /></span>
-        <h4>{{ awardList[awardId].name }}</h4>
-        <span>某某某提供</span>
-        <p>请在规定时间内领取</p>
-        <a routerLink="/info">领 取</a>
+        <div class="card-top">
+          <span class="img-box">
+            <img [src]="awardList[awardId].img" alt="" />
+          </span>
+          <div class="title">
+            <h4>{{ awardList[awardId].name }}</h4>
+            <h6>奖品等级</h6>
+            <p>兑奖码：334646465844654</p>
+          </div>
+          <div></div>
+        </div>
+        <div class="card-info">
+          <p>姓名：阿丽塔</p>
+          <p>电话：116511535</p>
+          <p>地址：广东省广州市天河区哪里那里就那里</p>
+        </div>
+        <div class="card-bottom">
+          <p><span>抽奖时间：2019-06-26 18:48</span><span class="red">剩余领奖时间：23:59:30</span></p>
+          <a routerLink="/info">领 取</a>
+        </div>
       </div>
       <div class="tip">
         <b>使用说明</b>
