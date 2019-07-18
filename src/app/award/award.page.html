@@ -31,7 +31,7 @@
               剩余领奖时间：{{ remainingTime | date: 'HH:mm:ss' }}
             </span>
           </p>
-          <a *ngIf="!getFlage && !lostFlag" routerLink="/info">领 取</a>
+          <a *ngIf="!getFlage && !lostFlag" [routerLink]="'/info/' + awardList.lotteryNum">领 取</a>
           <a *ngIf="getFlage">已 领 取</a>
           <a *ngIf="lostFlag">已 超 时</a>
         </div>

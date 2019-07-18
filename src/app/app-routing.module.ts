@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'scene/:id', component: ScenePage },
   { path: 'draw', component: DrawPage },
   { path: 'award', component: AwardPage },
-  { path: 'info', component: InfoPage }
+  { path: 'info/:num', component: InfoPage }
 ];
 @NgModule({
   imports: [

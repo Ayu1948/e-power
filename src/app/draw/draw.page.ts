@@ -14,7 +14,7 @@ export class DrawPage {
   luckFlag = false;
   award = {
     name: '',
-    level: 0
+    img: 0
   };
   ruleShow = false;
   constructor(private http: HttpClient) {}
@@ -55,27 +55,25 @@ export class DrawPage {
           }
           this.http
             .post('http://192.168.1.205:9921/content/lottery/draw', {
-              openid: 'o0ovH0l30zdoX8AE1OqQlQxTx38c'
+              openid: 'qwerrtytyyuuuss'
             })
             .subscribe(data => {
               console.log(data);
-              this.luckFlag = data['data'].hit;
-              if (this.luckFlag) {
+              if (data['data'] === '没有中奖') {
+                this.luckFlag = false;
+              } else {
+                this.luckFlag = true;
                 this.award.name = data['data'].productName;
-                this.award.level = data['data'].level;
               }
 
               checking = true;
-              let angle = 0;
-              // const dataArr = [0, 1, 2, 3, 4, 5];
-              // const data = dataArr[Math.floor(Math.random() * dataArr.length)];
-              if (this.luckFlag) {
-                angle = (360 / 8) * this.award.level + 360 * 15;
-              } else {
-                angle = (360 / 8) * 5 + 360 * 15;
-              }
+              let angle = data['data'].angle;
               createjs.Tween.get(pointer)
-                .to({ rotation: angle }, 5000, createjs.Ease.getPowInOut(4))
+                .to(
+                  { rotation: angle },
+                  5000,
+                  createjs.Ease.getPowInOut(4)
+                )
                 .call(() => {
                   checking = false;
                   pointer.rotation = 0;

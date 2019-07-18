@@ -21,6 +21,7 @@ import { VgCoreModule } from 'videogular2/core';
 import { VgControlsModule } from 'videogular2/controls';
 import { VgOverlayPlayModule } from 'videogular2/overlay-play';
 import { VgBufferingModule } from 'videogular2/buffering';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +39,7 @@ import { VgBufferingModule } from 'videogular2/buffering';
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
+    ReactiveFormsModule,
     IonicModule.forRoot(),
     AppRoutingModule
   ],
