@@ -1,66 +1,82 @@
-.content {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  .bg {
-    width: 7.5rem;
-    height: 12rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: url(../../assets/images/draw_bg.png) center center no-repeat;
-    background-size: cover;
-    .pointer {
-      width: 1.96rem;
-      height: 1.96rem;
-      background: url(../../assets/images/draw_pointer.png) center 0 no-repeat;
-      background-size: 1.4rem 1.68rem;
-      position: absolute;
-      top: 4.49rem;
-      left: 2.86rem;
-      transform: rotating 1s ease-in-out infinite;
-      -moz-animation: rotating 1s ease-in-out infinite; /* Firefox */
-      -webkit-animation: rotating 1s ease-in-out infinite; /* Safari 和 Chrome */
-      -o-animation: rotating 1s ease-in-out infinite; /* Opera */
-    }
-  }
-}
+// .content {
+//   position: fixed;
+//   width: 100%;
+//   height: 100%;
+//   .bg {
+//     width: 7.5rem;
+//     height: 12rem;
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     background: url(../../assets/images/draw_bg.png) center center no-repeat;
+//     background-size: cover;
+//     .pointer {
+//       width: 1.96rem;
+//       height: 1.96rem;
+//       background: url(../../assets/images/draw_pointer.png) center 0 no-repeat;
+//       background-size: 1.4rem 1.68rem;
+//       position: absolute;
+//       top: 4.49rem;
+//       left: 2.86rem;
+//       transform: rotating 1s ease-in-out infinite;
+//       -moz-animation: rotating 1s ease-in-out infinite; /* Firefox */
+//       -webkit-animation: rotating 1s ease-in-out infinite; /* Safari 和 Chrome */
+//       -o-animation: rotating 1s ease-in-out infinite; /* Opera */
+//     }
+//   }
+// }
 
-@keyframes rotating {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+// @keyframes rotating {
+//   0% {
+//     transform: rotate(0deg);
+//   }
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }
 
-@-moz-keyframes rotating /* Firefox */ {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+// @-moz-keyframes rotating /* Firefox */ {
+//   0% {
+//     transform: rotate(0deg);
+//   }
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }
 
-@-webkit-keyframes rotating /* Safari 和 Chrome */ {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+// @-webkit-keyframes rotating /* Safari 和 Chrome */ {
+//   0% {
+//     transform: rotate(0deg);
+//   }
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }
 
-@-o-keyframes rotating /* Opera */ {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+// @-o-keyframes rotating /* Opera */ {
+//   0% {
+//     transform: rotate(0deg);
+//   }
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }
+
+.ruleBtn {
+  width: 1.22rem;
+  height: .48rem;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -3rem;
+  background: url(../../assets/images/draw_rule_btn.png) 0 0 no-repeat;
+  background-size: cover;
+  font-size: .2rem;
+  color: #fff;
+  line-height: .48rem;
+  text-align: center;
+  z-index: 3;
 }
 
 #drawView {
@@ -78,6 +94,7 @@
   height: 100%;
   background: rgba($color: #000000, $alpha: 0.6);
   display: none;
+  z-index: 5;
   .wrap {
     width: 4.41rem;
     height: 6.08rem;
@@ -150,10 +167,57 @@
       bottom: -1rem;
       transform: translateX(-50%);
       background: url(../../assets/images/pop_close.png) 0 0 no-repeat;
-    background-size: cover;
+      background-size: cover;
     }
   }
   &.show {
     display: block;
+  }
+  .rule-pop {
+    width: 6.72rem;
+    height: 10.7rem;
+    background: #9bf5ec;
+    border-radius: 0.2rem;
+    border: #02d1b3 solid 0.05rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0.48rem 0 1.52rem 0.46rem;
+    .text {
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+      padding-right: .46rem;
+      h2 {
+        font-size: 0.4rem;
+        margin: 0 auto 0.38rem;
+        color: #034037;
+        text-align: center;
+        font-weight: bold;
+      }
+      h4 {
+        font-size: 0.32rem;
+        color: #006c5c;
+        margin: 0;
+      }
+      p {
+        font-size: 0.24rem;
+        color: #088674;
+        line-height: 0.36rem;
+        margin: 0.24rem 0 0.45rem;
+      }
+    }
+    button {
+      width: 2.88rem;
+      height: .8rem;
+      line-height: .8rem;
+      font-size: .32;
+      color: #fff;
+      border-radius: .1rem;
+      background: #FFC038;
+      display: block;
+      margin: 0.36rem auto;
+    }
   }
 }

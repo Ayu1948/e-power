@@ -5,9 +5,14 @@
       <div class="pointer" (click)="start()"></div>
     </div>
   </div> -->
+  <div class="ruleBtn" (click)="showRule()">活动规则</div>
   <canvas id="drawView" width="750" height="1200"></canvas>
   <div id="pop" [ngClass]="{ show: popShow }">
-    <div class="wrap" [ngClass]="{ pity: popFlag, lucky: !popFlag }">
+    <div
+      class="wrap"
+      *ngIf="!ruleShow"
+      [ngClass]="{ pity: popFlag, lucky: !popFlag }"
+    >
       <div *ngIf="popFlag; then pityTpl; else luckTpl"></div>
       <ng-template #pityTpl>
         <span class="title"></span>
@@ -17,10 +22,46 @@
       <ng-template #luckTpl>
         <span class="title"></span>
         <span class="award"></span>
-        <p>恭喜你！<br />获得{{award.name}}</p>
+        <p>恭喜你！<br />获得{{ award.name }}</p>
         <div class="button">马上去领取</div>
       </ng-template>
       <div class="close" (click)="close()"></div>
+    </div>
+    <div class="rule-pop" *ngIf="ruleShow">
+      <div class="text">
+        <h2>活动规则</h2>
+        <h4>一、参与方法</h4>
+        <p>
+          1.点击H5活动链接，进入活动。
+          <br />2.完成一个场景任务获得一枚徽章，集齐三枚徽章 获得一次抽奖机会。
+        </p>
+        <h4>二、活动时间</h4>
+        <p>2019.12.15</p>
+        <h4>三、奖品</h4>
+        <p>
+          本次活动共设七个奖项： <br />奖项一：华为 P30【全新版本6+128G】1台。
+          <br />奖项二：KINDLE（青春版4GB）2台。 <br />奖项三：天猫精灵音箱5台。
+          <br />奖项四：中国移动50元话费10份 <br />奖项五：中国移动30元话费40份
+          <br />奖项六：中国移动10元话费100份 <br />奖项七：中国移动5元话费300份
+        </p>
+        <h4>四、抽奖规则</h4>
+        <p>
+          1.每个用户有1次抽奖机会，同一微信号、同一电话、同一OPenID，视为同一用户。
+          <br />2.中奖者请在开奖后的24小时内填写正确的相关信息。
+          <br />3.实物奖品需填写正确的收件人姓名、电话及地址信息，用以寄送奖品。
+          <br />4.虚拟奖品将自动充值话费到中奖者手机，请注意填写正确的手机号码。（填写的手机号码必须为中国移动号码，否则视为无效)
+          <br />5.为保证活动的公平、公正、公开，主办方有权取消作假用户获奖资格。
+        </p>
+        <h4>五、奖品发放</h4>
+        <p>
+          1.中奖用户经平台审核，无刷单行为，即获得奖品领取资格。
+          <br />2.获得实物奖品的用户审核通过后，平台将于七个工作日内发出奖品。
+          <br />3.获得虚拟奖品的用户审核通过后，平台将于三个工作日内自动充值相应金额话费至用户手机号。
+          <br />4.中奖者提供的信息须真实，且手机号码须为中国移动号码。
+          <br />5.中奖者请在有效期内回复中奖信息，逾期未回复指定内容或格式不正确视为自动放弃。
+        </p>
+      </div>
+      <button (click)="know()">知道了</button>
     </div>
   </div>
 </ion-content>

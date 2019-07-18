@@ -16,6 +16,7 @@ export class DrawPage {
     name: '',
     level: 0
   };
+  ruleShow = false;
   constructor(private http: HttpClient) {}
   getData() {}
   btnContainer(text: string, img, btn) {
@@ -41,8 +42,7 @@ export class DrawPage {
       account.setTransform(377, 949);
       stage.addChild(bg, txt, account);
       stage.update();
-    };
-    setTimeout(() => {
+      // setTimeout(() => {
       const pointerImg = new Image();
       pointerImg.src = 'assets/images/draw_pointer.png';
       pointerImg.onload = () => {
@@ -106,7 +106,8 @@ export class DrawPage {
         stage.addChild(share, play);
         stage.update();
       };
-    }, 500);
+      // }, 500);
+    };
   }
   pop(p) {
     const mask = new createjs.Shape();
@@ -134,6 +135,14 @@ export class DrawPage {
     const txt = new createjs.Text('很遗憾！离中奖就差一步之遥');
     pop;
     p.addChild(mask, pop);
+  }
+  showRule() {
+    this.popShow = true;
+    this.ruleShow = true;
+  }
+  know() {
+    this.popShow = false;
+    this.ruleShow = false;
   }
   close() {
     this.popShow = false;

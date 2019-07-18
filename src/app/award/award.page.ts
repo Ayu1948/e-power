@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-award',
@@ -7,55 +8,39 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['award.page.scss']
 })
 export class AwardPage {
-  awardList = [
-    {
-      name: '华为 P30【全新版本6+128G】一部',
-      img: '../../assets/images/award_phone.png',
-      tip:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. '
-    },
-    {
-      name: 'KINDLE（青春版4GB）一台',
-      img: '../../assets/images/award_kindle.png',
-      tip:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. '
-    },
-    {
-      name: '天猫一台',
-      img: '../../assets/images/award_ai.png',
-      tip:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. '
-    },
-    {
-      name: '话费50元',
-      img: '../../assets/images/award_50.png',
-      tip:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. '
-    },
-    {
-      name: '话费30元',
-      img: '../../assets/images/award_30.png',
-      tip:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. '
-    },
-    {
-      name: '话费10元',
-      img: '../../assets/images/award_10.png',
-      tip:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. '
-    },
-    {
-      name: '话费5元',
-      img: '',
-      tip:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. '
-    }
+  awardImgList = [
+    '../../assets/images/award_phone.png',
+    '../../assets/images/award_kindle.png',
+    '../../assets/images/award_ai.png',
+    '../../assets/images/award_50.png',
+    '../../assets/images/award_30.png',
+    '../../assets/images/award_10.png',
+    '../../assets/images/award_5.png'
   ];
+  awardList;
   awardId = 1;
-  constructor(private title: Title) {
+  remainingTime;
+  constructor(private title: Title, private http: HttpClient) {
     title.setTitle('奖励详情');
+    this.http
+      .get('http://192.168.1.205:9921/content/product/getMyProduct', {
+        params: { openid: 'o0ovH0l30zdoX8AE1OqQlQxTx38c' }
+      })
+      .subscribe(req => {
+        console.log(req);
+        this.awardList = req['data'];
+        this.clock(req['data'].expiredTime);
+        // console.log(new Date() - new Date());
+      });
   }
-
+  clock(expiredTime) {
+    const today = new Date(),
+      stopTime = new Date(expiredTime);
+    this.remainingTime = new Date(stopTime.getTime() - today.getTime());
+    setTimeout(() => {
+      this.clock(this.awardList.expiredTime);
+    }, 1000);
+  }
   jump(id) {
     window.location.replace('/scene/' + id);
   }
