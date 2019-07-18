@@ -15,14 +15,14 @@
             <div class="title">
               <h4>{{ awardList.productName }}</h4>
               <h6>奖品等级 {{ awardList.awardLevel }}</h6>
-              <p>兑奖码：{{ awardList.lotteryNum }}</p>
+              <p>兑奖码：{{ awardList.awardCode }}</p>
             </div>
             <div></div>
           </div>
-          <div class="card-info">
-            <p>姓名：{{ awardList.lotteryUserId.username }}</p>
-            <p>电话：{{ awardList.lotteryUserId.mobilePhone }}</p>
-            <p>地址：{{ awardList.lotteryUserId.address }}</p>
+          <div class="card-info" *ngIf="getFlage">
+            <p>姓名：{{ awardList.username }}</p>
+            <p>电话：{{ awardList.mobilePhone }}</p>
+            <p>地址：{{ awardList.address }}</p>
           </div>
           <div class="card-bottom">
             <p>
@@ -35,7 +35,7 @@
             </p>
             <a
               *ngIf="!getFlage && !lostFlag"
-              [routerLink]="'/info/' + awardList.lotteryNum"
+              [routerLink]="'/info/' + awardList.awardCode"
               >领 取</a
             >
             <a *ngIf="getFlage">已 领 取</a>

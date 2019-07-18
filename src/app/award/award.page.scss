@@ -34,6 +34,7 @@
         display: flex;
         align-items: center;
         justify-content: start;
+        padding-bottom: 1.6rem;
         .img-box {
           display: flex;
           align-items: center;
@@ -45,7 +46,7 @@
           margin-right: 0.25rem;
           img {
             width: 1.4rem;
-            height: .88rem;
+            height: 0.88rem;
             display: block;
             margin: 0 auto;
           }
@@ -75,7 +76,6 @@
         background: #f9f9f9;
         padding: 0.1rem 0.22rem;
         margin: 0.36rem 0;
-        visibility: hidden;
         p {
           font-size: 0.24rem;
           color: #999;
@@ -113,8 +113,8 @@
         }
       }
       &.get {
-        .card-info {
-          visibility: visible;
+        .card-top {
+          padding-bottom: 0;
         }
         .card-bottom {
           a {
@@ -138,12 +138,12 @@
       &#award1 .card-top .img-box {
         img {
           width: 1.36rem;
-          height: .84rem;
+          height: 0.84rem;
         }
       }
       &#award2 .card-top .img-box {
         img {
-          height: .61rem;
+          height: 0.61rem;
         }
       }
     }
@@ -175,7 +175,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       content: '没有奖品哟～';
-      font-size: .32rem;
+      font-size: 0.32rem;
       text-align: center;
       color: #333;
       padding-top: 4rem;

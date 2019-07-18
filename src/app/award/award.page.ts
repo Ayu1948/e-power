@@ -31,23 +31,20 @@ export class AwardPage {
       .subscribe(req => {
         console.log(req);
         const data = req['data'][0];
-        if (data.length === 0) {
+        if (data.status === -1) {
           this.noneFlag = true;
         } else {
           this.awardList = data;
-          // 状态：0为没有被抽走，当前有效、1、已抽走，2:已兑走，3:已回收
+          // 状态：是否兑奖（-1:未中奖，0:未兑，1:已兑，2:过期）
           switch (data.status) {
-            case 1:
-              if (
-                new Date(data.expiredTime).getTime() <
-                new Date().getTime()
-              ) {
+            case 0:
+              if (new Date(data.expiredTime).getTime() < new Date().getTime()) {
                 this.lostFlag = true;
               } else {
                 this.clock(data.expiredTime);
               }
               break;
-            case 2:
+            case 1:
               this.getFlage = true;
               break;
             default:
