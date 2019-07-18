@@ -21,28 +21,37 @@ export class AwardPage {
   remainingTime = new Date('1999-01-01 00:00:00');
   getFlage = false;
   lostFlag = false;
+  noneFlag = false;
   constructor(private title: Title, private http: HttpClient) {
     this.title.setTitle('奖励详情');
     this.http
       .get('http://192.168.1.205:9921/content/product/getMyProduct', {
-        params: { openid: 'o0ovH0l30zdoX8AE1OqQlQxTx38c' }
+        params: { openid: 'qwerrtytyyuuuss' }
       })
       .subscribe(req => {
         console.log(req);
-        this.awardList = req['data'];
-        if (
-          req['data'].lotteryUserId.username !== '' &&
-          req['data'].lotteryUserId.mobilePhone !== '' &&
-          req['data'].lotteryUserId.address !== ''
-        ) {
-          this.getFlage = true;
+        const data = req['data'][0];
+        if (data.length === 0) {
+          this.noneFlag = true;
         } else {
-          if (
-            new Date(req['data'].expiredTime).getTime() < new Date().getTime()
-          ) {
-            this.lostFlag = true;
-          } else {
-            this.clock(req['data'].expiredTime);
+          this.awardList = data;
+          // 状态：0为没有被抽走，当前有效、1、已抽走，2:已兑走，3:已回收
+          switch (data.status) {
+            case 1:
+              if (
+                new Date(data.expiredTime).getTime() <
+                new Date().getTime()
+              ) {
+                this.lostFlag = true;
+              } else {
+                this.clock(data.expiredTime);
+              }
+              break;
+            case 2:
+              this.getFlage = true;
+              break;
+            default:
+              break;
           }
         }
       });

@@ -64,16 +64,13 @@ export class DrawPage {
               } else {
                 this.luckFlag = true;
                 this.award.name = data['data'].productName;
+                this.award.img = data['data'].image;
               }
 
               checking = true;
-              let angle = data['data'].angle;
+              const angle = Number(data['data'].angle + 360 * 15);
               createjs.Tween.get(pointer)
-                .to(
-                  { rotation: angle },
-                  5000,
-                  createjs.Ease.getPowInOut(4)
-                )
+                .to({ rotation: angle }, 5000, createjs.Ease.getPowInOut(4))
                 .call(() => {
                   checking = false;
                   pointer.rotation = 0;

@@ -47,13 +47,18 @@ export class InfoPage {
         }
       }
     }
-    data.openid = 'o0ovH0l30zdoX8AE1OqQlQxTx38c';
+    data.openid = 'qwerrtytyyuuuss';
     data.awardCode = this.lotteryNum;
     data.mobilePhone = String(data.mobilePhone);
     this.http
       .post('http://192.168.1.205:9921/content/product/receiveMyProduct', data)
       .subscribe(req => {
         console.log(req);
+        if (req['errcode'] === 0) {
+          this.popShow = true;
+        } else {
+          alert('信息提交失败！');
+        }
       });
   }
 }

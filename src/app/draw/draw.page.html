@@ -21,9 +21,9 @@
       </ng-template>
       <ng-template #luckTpl>
         <span class="title"></span>
-        <span class="award"></span>
-        <p>恭喜你！<br />获得{{ award.name }}</p>
-        <div class="button">马上去领取</div>
+        <span class="award" [id]="'award' + award.img"></span>
+        <p>恭喜你！获得<br />{{ award.name }}</p>
+        <div class="button" routerLink="/award">马上去领取</div>
       </ng-template>
       <div class="close" (click)="close()"></div>
     </div>
