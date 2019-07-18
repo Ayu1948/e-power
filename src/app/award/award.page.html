@@ -1,7 +1,11 @@
 <ion-content>
-  <div class="content">
+  <div class="content" [ngClass]="{ none: false }">
     <div class="wrap">
-      <div class="card" [ngClass]="'award' + awardId">
+      <div
+        class="card"
+        [id]="'award' + awardList.awardLevel"
+        [ngClass]="{ get: getFlage, lost: lostFlag }"
+      >
         <div class="card-top">
           <span class="img-box">
             <img [src]="awardImgList[awardList.awardLevel]" alt="" />
@@ -27,7 +31,9 @@
               剩余领奖时间：{{ remainingTime | date: 'HH:mm:ss' }}
             </span>
           </p>
-          <a routerLink="/info">领 取</a>
+          <a *ngIf="!getFlage && !lostFlag" routerLink="/info">领 取</a>
+          <a *ngIf="getFlage">已 领 取</a>
+          <a *ngIf="lostFlag">已 超 时</a>
         </div>
       </div>
       <div class="tip">

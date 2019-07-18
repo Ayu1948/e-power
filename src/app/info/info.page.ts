@@ -9,10 +9,10 @@ import { NgForm } from '@angular/forms';
 })
 export class InfoPage {
   constructor(private title: Title) {
-    title.setTitle('立即领取');
+    this.title.setTitle('立即领取');
   }
-  onSubmit(f: NgForm) {
-    console.log(f.value); // { first: '', last: '' }
-    console.log(f.valid); // false
+  onSubmit(f) {
+    console.log(f); // { first: '', last: '' }
+    // console.log(f.valid); // false
   }
 }

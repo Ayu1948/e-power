@@ -18,10 +18,11 @@ export class AwardPage {
     '../../assets/images/award_5.png'
   ];
   awardList;
-  awardId = 1;
-  remainingTime;
+  remainingTime = new Date('1999-01-01 00:00:00');
+  getFlage = false;
+  lostFlag = false;
   constructor(private title: Title, private http: HttpClient) {
-    title.setTitle('奖励详情');
+    this.title.setTitle('奖励详情');
     this.http
       .get('http://192.168.1.205:9921/content/product/getMyProduct', {
         params: { openid: 'o0ovH0l30zdoX8AE1OqQlQxTx38c' }
@@ -29,8 +30,21 @@ export class AwardPage {
       .subscribe(req => {
         console.log(req);
         this.awardList = req['data'];
-        this.clock(req['data'].expiredTime);
-        // console.log(new Date() - new Date());
+        if (
+          req['data'].lotteryUserId.username !== '' &&
+          req['data'].lotteryUserId.mobilePhone !== '' &&
+          req['data'].lotteryUserId.address !== ''
+        ) {
+          this.getFlage = true;
+        } else {
+          if (
+            new Date(req['data'].expiredTime).getTime() < new Date().getTime()
+          ) {
+            this.lostFlag = true;
+          } else {
+            this.clock(req['data'].expiredTime);
+          }
+        }
       });
   }
   clock(expiredTime) {
