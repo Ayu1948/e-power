@@ -59,7 +59,7 @@ export class DrawPage {
             })
             .subscribe(data => {
               console.log(data);
-              if (data['data'] === '没有中奖') {
+              if (data['msg'] === '没有中奖') {
                 this.luckFlag = false;
               } else {
                 this.luckFlag = true;

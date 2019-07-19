@@ -8,21 +8,26 @@
       <form [formGroup]="formModel" (submit)="onsubmit(formModel.value)">
         <div>
           <label><ion-icon name="person"></ion-icon></label>
-          <input placeholder="请填写您的姓名" formControlName="username"/>
+          <input placeholder="请填写您的姓名" formControlName="username" />
         </div>
         <div>
           <label><ion-icon name="call"></ion-icon></label>
-          <input type="number" placeholder="请填写您的电话" formControlName="mobilePhone"/>
+          <input
+            type="number"
+            placeholder="请填写您的电话"
+            formControlName="mobilePhone"
+          />
         </div>
         <div>
           <label><ion-icon name="pin"></ion-icon></label>
-          <input placeholder="请填写您的地址" formControlName="address"/>
+          <input placeholder="请填写您的地址" formControlName="address" />
         </div>
         <button type="submit">提 交</button>
       </form>
     </div>
-    <div class="pop-wrap" [ngClass]="{'show': popShow}">
+    <div class="pop-wrap" [ngClass]="{ show: popShow }">
       <div class="pop">
+        <span (click)="closePop()"></span>
         <h2>提交成功</h2>
         <p>我们将尽快安排发货，请耐心等待。</p>
         <div class="btn-box">

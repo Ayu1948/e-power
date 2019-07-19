@@ -31,23 +31,22 @@ export class AwardPage {
       .subscribe(req => {
         console.log(req);
         const data = req['data'][0];
-        if (data.status === -1) {
+        if (data === undefined) {
           this.noneFlag = true;
         } else {
           this.awardList = data;
-          // 状态：是否兑奖（-1:未中奖，0:未兑，1:已兑，2:过期）
-          switch (data.status) {
-            case 0:
-              if (new Date(data.expiredTime).getTime() < new Date().getTime()) {
-                this.lostFlag = true;
-              } else {
-                this.clock(data.expiredTime);
-              }
-              break;
-            case 1:
+          // 状态：是否兑奖（2:已兑，3:过期）
+          switch (data.lotteryProductId.status) {
+            case 2:
               this.getFlage = true;
+              this.clock(data.expiredTime);
+              break;
+            case 3:
+              // if (new Date(data.expiredTime).getTime() < new Date().getTime()) {
+              this.lostFlag = true;
               break;
             default:
+              this.clock(data.expiredTime);
               break;
           }
         }
@@ -60,8 +59,5 @@ export class AwardPage {
     setTimeout(() => {
       this.clock(this.awardList.expiredTime);
     }, 1000);
-  }
-  jump(id) {
-    window.location.replace('/scene/' + id);
   }
 }

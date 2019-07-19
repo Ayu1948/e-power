@@ -30,7 +30,7 @@
       <audio [src]="musicList[scenceId]" id="music" preload autoplay loop></audio>
       <!-- <audio src="../../assets/audio/grandpa.mp3" id="music1" preload loop></audio>
       <audio src="../../assets/audio/accountant.mp3" id="music2" preload loop></audio> -->
-      <div class="mask" (click)="onVideoClick()"></div>
+      <div class="mask" (click)="onVideoClick()" *ngIf="!firstFlag"></div>
       <div [ngClass]="{ 'mask-wrap': true, show: showBtn || skipBtn }">
         <div [ngClass]="{ 'btn-box': true, show: showBtn && !skipBtn }">
           <div class="button" (click)="continue()">继续</div>
@@ -47,7 +47,8 @@
             <p>
               你获取了一次抽奖机会<br/>去抽奖吧！
             </p>
-            <div class="button" (click)="jump(-1)">继续玩</div>
+            <div class="button" (click)="jump(-1)" *ngIf="toDraw">去抽奖</div>
+            <div class="button" (click)="jump(toDraw.id)" *ngIf="!toDraw">继续玩</div>
           </div>
         </div>
       </div>
