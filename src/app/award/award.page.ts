@@ -35,8 +35,8 @@ export class AwardPage {
           this.noneFlag = true;
         } else {
           this.awardList = data;
-          // 状态：是否兑奖（2:已兑，3:过期）
-          switch (data.lotteryProductId.status) {
+          // 状态：是否兑奖（1未兑奖，2已兑奖，3已过期）
+          switch (data.status) {
             case 2:
               this.getFlage = true;
               this.clock(data.expiredTime);
