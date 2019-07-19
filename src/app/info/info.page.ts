@@ -61,4 +61,7 @@ export class InfoPage {
         }
       });
   }
+  closePop() {
+    this.popShow = false;
+  }
 }

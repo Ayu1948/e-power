@@ -38,7 +38,7 @@
         width: 0.44rem;
         height: 0.44rem;
         display: inline-block;
-        margin-right: .31rem;
+        margin-right: 0.31rem;
         ion-icon {
           width: 100%;
           height: 100%;
@@ -47,8 +47,8 @@
         }
       }
       input {
-        font-size: .32rem;
-        line-height: .44rem;
+        font-size: 0.32rem;
+        line-height: 0.44rem;
         background: #f8f8f8;
         border: none;
         outline: none;
@@ -91,6 +91,15 @@
       top: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
+      span {
+        position: absolute;
+        top: 0.24rem;
+        right: 0.24rem;
+        width: 0.3rem;
+        height: 0.3rem;
+        background: url(../../assets/images/info_pop_close.png) 0 0 no-repeat;
+        background-size: cover;
+      }
       h2 {
         font-size: 0.5rem;
         color: #fff;

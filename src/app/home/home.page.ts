@@ -6,8 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss']
 })
 export class HomePage {
-  
-  constructor() {}
+  music;
+  constructor() {
+    this.music = document.getElementById('music');
+    // this.music.play();
+  }
   
   jump(id) {
     window.location.replace('/scene/' + id);
