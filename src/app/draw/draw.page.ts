@@ -19,13 +19,13 @@ export class DrawPage {
   ruleShow = false;
   constructor(private http: HttpClient) {}
   getData() {}
-  btnContainer(text: string, img, btn) {
-    const txt = new createjs.Text(text, '32px PingFang', '#fff');
-    txt.x = 85;
-    txt.y = 21;
-    const bg = new createjs.Bitmap(img);
-    btn.addChild(bg, txt);
-  }
+  // btnContainer(text: string, img, btn) {
+  //   const txt = new createjs.Text(text, '32px PingFang', '#fff');
+  //   txt.x = 85;
+  //   txt.y = 21;
+  //   const bg = new createjs.Bitmap(img);
+  //   btn.addChild(bg, txt);
+  // }
   ionViewDidEnter() {
     const stage = new createjs.Stage('drawView');
     const bgImg = new Image();
@@ -89,18 +89,18 @@ export class DrawPage {
         stage.addChild(pointer);
         stage.update();
       };
-      const btnImg = new Image();
-      btnImg.src = 'assets/images/draw_btn.png';
-      btnImg.onload = () => {
-        const share = new createjs.Container();
-        this.btnContainer('一起玩', btnImg, share);
-        const play = new createjs.Container();
-        this.btnContainer('继续玩', btnImg, play);
-        share.setTransform(62, 1050);
-        play.setTransform(420, 1050);
-        stage.addChild(share, play);
-        stage.update();
-      };
+      // const btnImg = new Image();
+      // btnImg.src = 'assets/images/draw_btn.png';
+      // btnImg.onload = () => {
+      //   const share = new createjs.Container();
+      //   this.btnContainer('一起玩', btnImg, share);
+      //   const play = new createjs.Container();
+      //   this.btnContainer('继续玩', btnImg, play);
+      //   share.setTransform(62, 1050);
+      //   play.setTransform(420, 1050);
+      //   stage.addChild(share, play);
+      //   stage.update();
+      // };
       // }, 500);
     };
   }

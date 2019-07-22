@@ -15,8 +15,6 @@ import { AwardPage } from './award/award.page';
 import { HttpClientModule } from '@angular/common/http';
 import { InfoPage } from './info/info.page';
 
-// import { VideoPlayer } from '@ionic-native/video-player/ngx';
-
 import { VgCoreModule } from 'videogular2/core';
 import { VgControlsModule } from 'videogular2/controls';
 import { VgOverlayPlayModule } from 'videogular2/overlay-play';
@@ -46,7 +44,6 @@ import { ReactiveFormsModule } from '@angular/forms';
   providers: [
     StatusBar,
     SplashScreen,
-    // VideoPlayer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

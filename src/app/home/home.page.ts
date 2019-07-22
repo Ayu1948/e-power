@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as createjs from 'createjs-module';
 
 @Component({
   selector: 'app-home',
@@ -6,12 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss']
 })
 export class HomePage {
-  music;
+  // src = 'assets/audio/bgm.mp3';
+  // isPlaying = false;
   constructor() {
-    this.music = document.getElementById('music');
-    // this.music.play();
+    createjs.Sound.alternateExtensions = ['mp3'];
+    createjs.Sound.on('fileload', () => {
+      createjs.Sound.play('sound2');
+    });
+    createjs.Sound.registerSound('assets/audio/bgm.mp3', 'sound2');
+    // 加载完成后
   }
-  
+
   jump(id) {
     window.location.replace('/scene/' + id);
   }

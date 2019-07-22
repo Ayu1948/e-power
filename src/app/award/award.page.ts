@@ -22,6 +22,7 @@ export class AwardPage {
   getFlage = false;
   lostFlag = false;
   noneFlag = false;
+  awardLevel = ['特等奖', '一等奖', '二等奖', '三等奖', '四等奖', '五等奖', '六等奖', '七等奖'];
   constructor(private title: Title, private http: HttpClient) {
     this.title.setTitle('奖励详情');
     this.http
