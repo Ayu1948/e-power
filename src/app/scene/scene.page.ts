@@ -96,19 +96,12 @@ export class ScenePage {
     const modal = await this.modalController.create({
       component: BadgePage,
       componentProps: {
-        firstName: 'Douglas'
+        pageName: 'scene'
       },
       cssClass: ['badge']
     });
     return await modal.present();
   }
-  // dismiss() {
-  //   // using the injected ModalController this page
-  //   // can "dismiss" itself and optionally pass back data
-  //   this.modalController.dismiss({
-  //     'dismissed': true
-  //   });
-  // }
 
   onVideoClick() {
     console.log(123);

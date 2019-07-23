@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
+import { GlobalVariable } from '../globals';
 
 @Component({
   selector: 'app-award',
@@ -18,16 +19,25 @@ export class AwardPage {
     '../../assets/images/award_5.png'
   ];
   awardList;
-  remainingTime = new Date('1999-01-01 00:00:00');
+  remainingTime = new Date('1999/01/01 00:00:00');
   getFlage = false;
   lostFlag = false;
   noneFlag = false;
-  awardLevel = ['特等奖', '一等奖', '二等奖', '三等奖', '四等奖', '五等奖', '六等奖', '七等奖'];
+  awardLevel = [
+    '特等奖',
+    '一等奖',
+    '二等奖',
+    '三等奖',
+    '四等奖',
+    '五等奖',
+    '六等奖',
+    '七等奖'
+  ];
   constructor(private title: Title, private http: HttpClient) {
     this.title.setTitle('奖励详情');
     this.http
-      .get('http://192.168.1.205:9921/content/product/getMyProduct', {
-        params: { openid: 'qwerrtytyyuuuss' }
+      .get(GlobalVariable.base_path + '/product/getMyProduct', {
+        params: { openid: GlobalVariable.openid }
       })
       .subscribe(req => {
         console.log(req);

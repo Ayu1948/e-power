@@ -1,6 +1,6 @@
-import { Component, ViewChild, Input } from '@angular/core';
-import { VgAPI, VgPlayer } from 'videogular2/core';
+import { Component, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-badge',
@@ -8,19 +8,22 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['badge.page.scss']
 })
 export class BadgePage {
-  @Input() firstName: string;
+  @Input() pageName: string;
   // @Input() lastName: string;
   // @Input() middleInitial: string;
   scenceId = 0; // 0 包租婆 1 退休大爷 2 会计师
   getFlag = [false, false, false];
   toDraw = { flag: false, id: 0 };
-  constructor(private http: HttpClient) {
+  constructor(
+    public modalController: ModalController,
+    private http: HttpClient
+  ) {
     this.getBadge();
   }
   ngOnInit() {
-    console.log(this.firstName);
+    console.log(this.pageName);
     // 接收传过来的视频id
-    this.over(0);
+    this.over(this.scenceId);
   }
   getBadge() {
     this.http
@@ -72,6 +75,12 @@ export class BadgePage {
       .subscribe(req => {
         console.log(req);
       });
+  }
+  dismiss() {
+    // 只有首页点击进去才可以关掉徽章弹框
+    if (this.pageName === 'home') {
+      this.modalController.dismiss();
+    }
   }
   jump(id) {
     if (id < 0) {
