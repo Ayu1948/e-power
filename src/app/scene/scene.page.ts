@@ -1,9 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { VgAPI, VgPlayer } from 'videogular2/core';
-import { HttpClient } from '@angular/common/http';
-
-declare const wx: any;
-declare const WeixinJSBridge: any;
+import { BadgePage } from '../badge/badge.page';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-scene',
@@ -23,9 +21,7 @@ export class ScenePage {
     '../../assets/audio/grandpa.mp3',
     '../../assets/audio/accountant.mp3'
   ];
-  getFlag = [false, false, false];
-  toDraw = { flag: false, id: 0 };
-  constructor(private http: HttpClient) {
+  constructor(public modalController: ModalController) {
     const href = window.location.href;
     this.scenceId = Number(href.substring(href.indexOf('/scene/') + 7));
   }
@@ -80,11 +76,9 @@ export class ScenePage {
         }
       }
     });
-    this.getBadge();
     this.api.getDefaultMedia().subscriptions.ended.subscribe(() => {
       this.skipBtn = true;
-      this.getFlag[this.scenceId] = true;
-      this.over();
+      this.toBadge();
     });
   }
   continue() {
@@ -92,67 +86,29 @@ export class ScenePage {
     this.music.play();
     this.showBtn = false;
   }
-  getBadge() {
-    this.http
-      .get('http://192.168.1.205:9921/content/badge/getMyBadge', {
-        params: { openid: 'qwerrtytyyuuuss' }
-      })
-      .subscribe(req => {
-        console.log(req);
-        const arr = req['data'];
-        for (const key in arr) {
-          if (arr.hasOwnProperty(key) && arr[key] > 0) {
-            if (key === 'woman') {
-              this.getFlag[0] = true;
-            }
-            if (key === 'oldman') {
-              this.getFlag[1] = true;
-            }
-            if (key === 'accountant') {
-              this.getFlag[2] = true;
-            }
-          }
-        }
-        this.getFlag.forEach((v, i) => {
-          if (!v) {
-            this.toDraw.id = i;
-            return;
-          }
-        });
-        this.toDraw.flag = true;
-      });
-  }
-  over() {
-    let badge = 'LAND2a76a076480d8e';
-    switch (this.scenceId) {
-      case 1:
-        badge = 'RETa76a0710db9efca';
-        break;
-      case 2:
-        badge = 'ACC5d255a76a07157';
-        break;
-      default:
-        break;
-    }
-    this.http
-      .post('http://192.168.1.205:9921/content/badge/addMyBadge', {
-        openid: 'qwerrtytyyuuuss',
-        badge
-      })
-      .subscribe(req => {
-        console.log(req);
-      });
-  }
   skip() {
     this.api.getDefaultMedia().currentTime = 28;
-    console.log(this.api.getDefaultMedia().duration);
     this.skipBtn = true;
-    this.getFlag[this.scenceId] = true;
-    this.over();
+    this.toBadge();
   }
-  toggleFullscreen($event) {
-    console.log($event);
+  async toBadge() {
+    // 传openid和当前视频id（用于更新badge记录）
+    const modal = await this.modalController.create({
+      component: BadgePage,
+      componentProps: {
+        firstName: 'Douglas'
+      },
+      cssClass: ['badge']
+    });
+    return await modal.present();
   }
+  // dismiss() {
+  //   // using the injected ModalController this page
+  //   // can "dismiss" itself and optionally pass back data
+  //   this.modalController.dismiss({
+  //     'dismissed': true
+  //   });
+  // }
 
   onVideoClick() {
     console.log(123);
@@ -172,13 +128,6 @@ export class ScenePage {
       this.music.pause(); // 停止音乐
       // btn.style.background =
       //   'url(images/music/pictures/play.png) no-repeat 10px';
-    }
-  }
-  jump(id) {
-    if (id < 0) {
-      window.location.replace('/draw');
-    } else {
-      window.location.replace('/scene/' + id);
     }
   }
 }

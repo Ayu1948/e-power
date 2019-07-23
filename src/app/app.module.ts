@@ -9,7 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePage } from './home/home.page';
-import { ScenePage } from './scene/scene.page';
+// import { ScenePage } from './scene/scene.page';
 import { DrawPage } from './draw/draw.page';
 import { AwardPage } from './award/award.page';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,11 +20,12 @@ import { VgControlsModule } from 'videogular2/controls';
 import { VgOverlayPlayModule } from 'videogular2/overlay-play';
 import { VgBufferingModule } from 'videogular2/buffering';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ScenePageModule } from './scene/scene.module';
 @NgModule({
   declarations: [
     AppComponent,
     HomePage,
-    ScenePage,
+    // ScenePage,
     DrawPage,
     AwardPage,
     InfoPage
@@ -39,7 +40,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     VgBufferingModule,
     ReactiveFormsModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    ScenePageModule
   ],
   providers: [
     StatusBar,

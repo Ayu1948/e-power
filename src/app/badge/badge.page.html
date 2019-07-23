@@ -1,0 +1,32 @@
+<div class="mask-wrap">
+  <div class="badge-box">
+    <div class="panel">
+      <span class="title"></span>
+      <div class="badge-wrap">
+        <span
+          class="badge"
+          [ngClass]="{ get: getFlag[0] }"
+          (click)="jump(0)"
+        ></span>
+        <span
+          class="badge"
+          [ngClass]="{ get: getFlag[1] }"
+          (click)="jump(1)"
+        ></span>
+        <span
+          class="badge"
+          [ngClass]="{ get: getFlag[2] }"
+          (click)="jump(2)"
+        ></span>
+      </div>
+      <p *ngIf="toDraw.flag">你获取了一次抽奖机会<br />去抽奖吧！</p>
+      <p *ngIf="!toDraw.flag">
+        点击未点亮的徽章按钮<br />集齐可获得抽奖机会哦！
+      </p>
+      <div class="button" (click)="jump(-1)" *ngIf="toDraw.flag">去抽奖</div>
+      <div class="button" (click)="jump(toDraw.id)" *ngIf="!toDraw.flag">
+        继续玩
+      </div>
+    </div>
+  </div>
+</div>
