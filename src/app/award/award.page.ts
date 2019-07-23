@@ -35,6 +35,7 @@ export class AwardPage {
   ];
   constructor(private title: Title, private http: HttpClient) {
     this.title.setTitle('奖励详情');
+    // 全局变量的引入
     this.http
       .get(GlobalVariable.base_path + '/product/getMyProduct', {
         params: { openid: GlobalVariable.openid }
