@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { GlobalVariable } from '../globals';
 
 @Component({
   selector: 'app-info',
@@ -51,7 +52,7 @@ export class InfoPage {
     data.awardCode = this.lotteryNum;
     data.mobilePhone = String(data.mobilePhone);
     this.http
-      .post('http://192.168.1.205:9921/content/product/receiveMyProduct', data)
+      .post(GlobalVariable.base_path + '/product/receiveMyProduct', data)
       .subscribe(req => {
         console.log(req);
         if (req['errcode'] === 0) {

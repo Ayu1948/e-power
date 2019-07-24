@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import * as createjs from 'createjs-module';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { GlobalVariable } from '../globals';
 
 @Component({
   selector: 'app-draw',
@@ -54,7 +55,7 @@ export class DrawPage {
             return;
           }
           this.http
-            .post('http://192.168.1.205:9921/content/lottery/draw', {
+            .post(GlobalVariable.base_path + '/lottery/draw', {
               openid: openid
             })
             .subscribe(data => {

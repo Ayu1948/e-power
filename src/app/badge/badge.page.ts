@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ModalController } from '@ionic/angular';
+import { GlobalVariable } from '../globals';
 
 @Component({
   selector: 'app-badge',
@@ -27,7 +28,7 @@ export class BadgePage {
   }
   getBadge() {
     this.http
-      .get('http://192.168.1.205:9921/content/badge/getMyBadge', {
+      .get(GlobalVariable.base_path + '/badge/getMyBadge', {
         params: { openid: openid }
       })
       .subscribe(req => {
@@ -68,7 +69,7 @@ export class BadgePage {
         break;
     }
     this.http
-      .post('http://192.168.1.205:9921/content/badge/addMyBadge', {
+      .post(GlobalVariable.base_path + '/badge/addMyBadge', {
         openid: openid,
         badge
       })
