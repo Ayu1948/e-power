@@ -17,7 +17,8 @@ import { VgBufferingModule } from 'videogular2/buffering';
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
-    VgBufferingModule
+    VgBufferingModule,
+    RouterModule
     // RouterModule.forChild([{ path: '', component: BadgePage }])
   ],
   declarations: [BadgePage]

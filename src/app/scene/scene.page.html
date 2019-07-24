@@ -14,12 +14,18 @@
           playsinline
           webkit-playsinline
           playsinline="true"
+          x5-playsinline="true"
           x5-video-player-type="h5"
           x5-video-player-fullscreen="true"
           width="100%"
           height="100%"
           poster
           [ngSwitch]="scenceId"
+          preload
+          x-webkit-airplay="true"
+          airplay="allow"
+          webkit-playsinline="true"
+          playsinline="true"
         >
           <source
             *ngSwitchDefault

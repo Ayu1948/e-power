@@ -38,36 +38,36 @@ export class ScenePage {
       if (!this.skipBtn) {
         switch (this.scenceId) {
           case 1:
-            if (this.api.getDefaultMedia().currentTime > 7.5 && !flag1) {
+            if (this.api.getDefaultMedia().currentTime > 9.5 && !flag1) {
               this.api.pause();
               flag1 = true;
               this.showBtn = true;
             }
-            if (this.api.getDefaultMedia().currentTime > 19.5 && !flag2) {
+            if (this.api.getDefaultMedia().currentTime > 29 && !flag2) {
               this.api.pause();
               flag2 = true;
               this.showBtn = true;
             }
             break;
           case 2:
-            if (this.api.getDefaultMedia().currentTime > 11 && !flag1) {
+            if (this.api.getDefaultMedia().currentTime > 17 && !flag1) {
               this.api.pause();
               flag1 = true;
               this.showBtn = true;
             }
-            if (this.api.getDefaultMedia().currentTime > 16.5 && !flag2) {
+            if (this.api.getDefaultMedia().currentTime > 29 && !flag2) {
               this.api.pause();
               flag2 = true;
               this.showBtn = true;
             }
             break;
           default:
-            if (this.api.getDefaultMedia().currentTime > 6 && !flag1) {
+            if (this.api.getDefaultMedia().currentTime > 8 && !flag1) {
               this.api.pause();
               flag1 = true;
               this.showBtn = true;
             }
-            if (this.api.getDefaultMedia().currentTime > 20 && !flag2) {
+            if (this.api.getDefaultMedia().currentTime > 23 && !flag2) {
               this.api.pause();
               flag2 = true;
               this.showBtn = true;
@@ -77,17 +77,29 @@ export class ScenePage {
       }
     });
     this.api.getDefaultMedia().subscriptions.ended.subscribe(() => {
-      this.skipBtn = true;
-      this.toBadge();
+      if (!this.skipBtn) {
+        this.skipBtn = true;
+        this.toBadge();
+      }
     });
   }
   continue() {
     this.api.play();
-    this.music.play();
+    // this.music.play();
     this.showBtn = false;
   }
   skip() {
-    this.api.getDefaultMedia().currentTime = 28;
+    switch (this.scenceId) {
+      case 1:
+        this.api.getDefaultMedia().currentTime = 39;
+        break;
+      case 2:
+        this.api.getDefaultMedia().currentTime = 36;
+        break;
+      default:
+        this.api.getDefaultMedia().currentTime = 37;
+        break;
+    }
     this.skipBtn = true;
     this.toBadge();
   }
@@ -96,7 +108,8 @@ export class ScenePage {
     const modal = await this.modalController.create({
       component: BadgePage,
       componentProps: {
-        pageName: 'scene'
+        pageName: 'scene',
+        scenceId: this.scenceId
       },
       cssClass: ['badge']
     });

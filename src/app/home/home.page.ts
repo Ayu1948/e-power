@@ -10,7 +10,7 @@ import { ModalController } from '@ionic/angular';
 })
 export class HomePage {
   src = 'bgm';
-  // isPlaying = false;
+  checkModal = false;
 
   constructor(public modalController: ModalController) {
     console.log(createjs);
@@ -21,16 +21,28 @@ export class HomePage {
     createjs.Sound.registerSound('assets/audio/bgm.mp3', 'sound');
   }
   async toBadge() {
-    // 传openid和当前视频id（用于更新badge记录）
-    const modal = await this.modalController.create({
-      component: BadgePage,
-      componentProps: {
-        pageName: 'home'
-      },
-      cssClass: ['badge']
-    });
-    return await modal.present();
+    let dis;
+    if (!this.checkModal) {
+      this.checkModal = true;
+      // 传openid和当前视频id（用于更新badge记录）
+      this.modalController
+        .create({
+          component: BadgePage,
+          componentProps: {
+            pageName: 'home'
+          },
+          cssClass: ['badge']
+        })
+        .then(async modal => {
+          modal.present();
+          dis = await modal.onDidDismiss();
+          console.log(this.checkModal);
+          this.checkModal = false;
+        });
+      // return await ;
+    }
   }
+
   // jump(id) {
   //   window.location.replace('./scene/' + id);
   // }

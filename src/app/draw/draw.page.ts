@@ -30,7 +30,7 @@ export class DrawPage {
   ionViewDidEnter() {
     const stage = new createjs.Stage('drawView');
     const bgImg = new Image();
-    bgImg.src = 'assets/images/draw_bg.png';
+    bgImg.src = 'assets/images/draw_bg.jpg';
     bgImg.onload = () => {
       const bg = new createjs.Bitmap(bgImg);
       const txt = new createjs.Text('剩余     次', '28px PingFang', '#fff');

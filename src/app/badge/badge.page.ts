@@ -11,10 +11,10 @@ import { GlobalVariable } from '../globals';
 export class BadgePage {
   @Input() pageName: string;
   // @Input() lastName: string;
-  // @Input() middleInitial: string;
-  scenceId = 0; // 0 包租婆 1 退休大爷 2 会计师
+  @Input() scenceId: string;
+  // scenceId = 0; // 0 包租婆 1 退休大爷 2 会计师
   getFlag = [false, false, false];
-  toDraw = { flag: false, id: 0 };
+  toDraw = { flag: true, id: 0 };
   constructor(
     public modalController: ModalController,
     private http: HttpClient
@@ -24,7 +24,9 @@ export class BadgePage {
   ngOnInit() {
     console.log(this.pageName);
     // 接收传过来的视频id
-    this.over(this.scenceId);
+    if (this.pageName === 'scene') {
+      this.over(this.scenceId);
+    }
   }
   getBadge() {
     this.http
@@ -50,10 +52,11 @@ export class BadgePage {
         this.getFlag.forEach((v, i) => {
           if (!v) {
             this.toDraw.id = i;
+            this.toDraw.flag = false;
             return;
           }
         });
-        this.toDraw.flag = true;
+        console.log(this.toDraw);
       });
   }
   over(scenceId) {
@@ -78,16 +81,25 @@ export class BadgePage {
       });
   }
   dismiss() {
+    console.log('click');
     // 只有首页点击进去才可以关掉徽章弹框
     if (this.pageName === 'home') {
-      this.modalController.dismiss();
+      this.modalController.dismiss({
+        pageName: this.pageName
+      });
     }
   }
-  // jump(id) {
-  //   if (id < 0) {
-  //     window.location.replace('/draw');
-  //   } else {
-  //     window.location.replace('/scene/' + id);
-  //   }
-  // }
+  jump(id) {
+    // if (id < 0) {
+    //   window.location.replace('/draw');
+    // } else {
+    //   window.location.replace('/scene/' + id);
+    // }
+    // this.modalController.dismiss({
+    //   pageName: this.pageName
+    // });
+  }
+  test() {
+    console.log('clickclick');
+  }
 }
