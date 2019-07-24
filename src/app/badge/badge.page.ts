@@ -28,7 +28,7 @@ export class BadgePage {
   getBadge() {
     this.http
       .get('http://192.168.1.205:9921/content/badge/getMyBadge', {
-        params: { openid: 'qwerrtytyyuuuss' }
+        params: { openid: openid }
       })
       .subscribe(req => {
         console.log(req);
@@ -69,7 +69,7 @@ export class BadgePage {
     }
     this.http
       .post('http://192.168.1.205:9921/content/badge/addMyBadge', {
-        openid: 'qwerrtytyyuuuss',
+        openid: openid,
         badge
       })
       .subscribe(req => {
@@ -82,11 +82,11 @@ export class BadgePage {
       this.modalController.dismiss();
     }
   }
-  jump(id) {
-    if (id < 0) {
-      window.location.replace('/draw');
-    } else {
-      window.location.replace('/scene/' + id);
-    }
-  }
+  // jump(id) {
+  //   if (id < 0) {
+  //     window.location.replace('/draw');
+  //   } else {
+  //     window.location.replace('/scene/' + id);
+  //   }
+  // }
 }

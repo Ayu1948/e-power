@@ -38,7 +38,7 @@ export class AwardPage {
     // 全局变量的引入
     this.http
       .get(GlobalVariable.base_path + '/product/getMyProduct', {
-        params: { openid: window['openid'] }
+        params: { openid: openid }
       })
       .subscribe(req => {
         console.log(req);

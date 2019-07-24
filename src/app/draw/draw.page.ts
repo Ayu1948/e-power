@@ -55,7 +55,7 @@ export class DrawPage {
           }
           this.http
             .post('http://192.168.1.205:9921/content/lottery/draw', {
-              openid: 'qwerrtytyyuuuss'
+              openid: openid
             })
             .subscribe(data => {
               console.log(data);

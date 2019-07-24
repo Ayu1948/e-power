@@ -47,7 +47,7 @@ export class InfoPage {
         }
       }
     }
-    data.openid = 'qwerrtytyyuuuss';
+    data.openid = openid;
     data.awardCode = this.lotteryNum;
     data.mobilePhone = String(data.mobilePhone);
     this.http

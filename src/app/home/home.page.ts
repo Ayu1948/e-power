@@ -31,7 +31,7 @@ export class HomePage {
     });
     return await modal.present();
   }
-  jump(id) {
-    window.location.replace('/scene/' + id);
-  }
+  // jump(id) {
+  //   window.location.replace('./scene/' + id);
+  // }
 }
