@@ -4,6 +4,7 @@ import { BadgePage } from '../badge/badge.page';
 import { ModalController } from '@ionic/angular';
 import { VgAPI } from 'videogular2/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -14,14 +15,11 @@ export class HomePage {
   src = 'bgm';
   checkModal = false;
   api: VgAPI;
-  constructor(private router: Router, public modalController: ModalController) {
-    // console.log(createjs);
-    // createjs.Sound.on('fileload', () => {
-    //   var instance = createjs.Sound.play('sound');
-    //   instance.volume = 0.5;
-    // });
-    // createjs.Sound.registerSound('assets/audio/bgm.mp3', 'sound');
-  }
+  constructor(
+    private location: Location,
+    private router: Router,
+    public modalController: ModalController
+  ) {}
   async toBadge() {
     let dis;
     if (!this.checkModal) {
@@ -50,6 +48,7 @@ export class HomePage {
     this.api.play();
   }
   clickTo(id) {
+    this.location.replaceState('/scene/' + id);
     this.router.navigateByUrl('/scene/' + id, { skipLocationChange: true });
     this.api.pause();
   }

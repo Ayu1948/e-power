@@ -8,24 +8,20 @@
         <vg-overlay-play></vg-overlay-play>
         <vg-buffering></vg-buffering>
         <video
+          id="video"
           [vgMedia]="media"
           #media
+          [vgMaster]="true"
           preload="auto"
           playsinline
           webkit-playsinline
           playsinline="true"
-          x5-playsinline="true"
           x5-video-player-type="h5"
           x5-video-player-fullscreen="true"
           width="100%"
           height="100%"
           poster
           [ngSwitch]="scenceId"
-          preload
-          x-webkit-airplay="true"
-          airplay="allow"
-          webkit-playsinline="true"
-          playsinline="true"
         >
           <source
             *ngSwitchDefault
@@ -43,27 +39,33 @@
             type="video/mp4"
           />
         </video>
+        <!-- <video
+          id="music"
+          [vgMedia]="audio"
+          #audio
+          preload
+          playsinline
+          webkit-playsinline
+          loop
+          [ngSwitch]="scenceId"
+        >
+          <source
+            src="assets/audio/landlord.mp3"
+            type="audio/mp3"
+            *ngSwitchDefault
+          />
+          <source
+            src="assets/audio/grandpa.mp3"
+            type="audio/mp3"
+            *ngSwitchCase="1"
+          />
+          <source
+            src="assets/audio/accountant.mp3"
+            type="audio/mp3"
+            *ngSwitchCase="2"
+          />
+        </video> -->
       </vg-player>
-      <vg-player
-        class="video-container"
-        (onPlayerReady)="onPlayerReadyAudio($event)"
-        id="audio"
-      >
-        <vg-overlay-play></vg-overlay-play>
-        <vg-buffering></vg-buffering>
-        <video [vgMedia]="audio" #audio preload loop>
-          <source [src]="musicList[scenceId]" type="audio/mp3" />
-        </video>
-      </vg-player>
-      <!-- <audio
-        [src]="musicList[scenceId]"
-        id="music"
-        preload
-        autoplay
-        loop
-      ></audio> -->
-      <!-- <audio src="../../assets/audio/grandpa.mp3" id="music1" preload loop></audio>
-      <audio src="../../assets/audio/accountant.mp3" id="music2" preload loop></audio> -->
       <div
         [ngClass]="{ mask: true, show: !firstFlag }"
         (click)="onVideoClick()"

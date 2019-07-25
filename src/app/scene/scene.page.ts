@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { VgAPI, VgPlayer } from 'videogular2/core';
 import { BadgePage } from '../badge/badge.page';
 import { ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-scene',
@@ -21,7 +22,7 @@ export class ScenePage {
     'assets/audio/grandpa.mp3',
     'assets/audio/accountant.mp3'
   ];
-  constructor(public modalController: ModalController) {
+  constructor(private router: Router, public modalController: ModalController) {
     const href = window.location.href;
     this.scenceId = Number(href.substring(href.indexOf('/scene/') + 7));
     console.log('inScene');
@@ -40,36 +41,36 @@ export class ScenePage {
         switch (this.scenceId) {
           case 1:
             if (this.api.getDefaultMedia().currentTime > 9.5 && !flag1) {
-              this.api.pause();
+              this.api.getDefaultMedia().pause();
               flag1 = true;
               this.showBtn = true;
             }
             if (this.api.getDefaultMedia().currentTime > 29 && !flag2) {
-              this.api.pause();
+              this.api.getDefaultMedia().pause();
               flag2 = true;
               this.showBtn = true;
             }
             break;
           case 2:
             if (this.api.getDefaultMedia().currentTime > 17 && !flag1) {
-              this.api.pause();
+              this.api.getDefaultMedia().pause();
               flag1 = true;
               this.showBtn = true;
             }
             if (this.api.getDefaultMedia().currentTime > 29 && !flag2) {
-              this.api.pause();
+              this.api.getDefaultMedia().pause();
               flag2 = true;
               this.showBtn = true;
             }
             break;
           default:
             if (this.api.getDefaultMedia().currentTime > 8 && !flag1) {
-              this.api.pause();
+              this.api.getDefaultMedia().pause();
               flag1 = true;
               this.showBtn = true;
             }
             if (this.api.getDefaultMedia().currentTime > 23 && !flag2) {
-              this.api.pause();
+              this.api.getDefaultMedia().pause();
               flag2 = true;
               this.showBtn = true;
             }
@@ -84,28 +85,32 @@ export class ScenePage {
       }
     });
   }
-  onPlayerReadyAudio(api: VgAPI) {
-    this.music = api;
-  }
+  // onPlayerReadyAudio(api: VgAPI) {
+  //   this.music = api;
+  //   console.log(this.music);
+  // }
   continue() {
-    this.api.play();
-    // this.music.play();
+    this.api.getDefaultMedia().play();
     this.showBtn = false;
+    console.log(this.api);
   }
   skip() {
     switch (this.scenceId) {
       case 1:
-        this.api.getDefaultMedia().currentTime = 39;
+        window.location.href =
+          'https://mp.weixin.qq.com/s/lCvjqrkLPG3vcAcxCukZAg';
         break;
       case 2:
-        this.api.getDefaultMedia().currentTime = 36;
+        window.location.href =
+          'https://mp.weixin.qq.com/s/Tx9e5kRvJaHrZNFm2Tr8AQ';
         break;
       default:
-        this.api.getDefaultMedia().currentTime = 37;
+        window.location.href =
+          'https://mp.weixin.qq.com/s/vUdPsGqTljwvZ7TpieTUuA';
         break;
     }
-    this.skipBtn = true;
-    this.toBadge();
+    // this.skipBtn = true;
+    // this.toBadge();
   }
   async toBadge() {
     // 传openid和当前视频id（用于更新badge记录）
@@ -121,11 +126,11 @@ export class ScenePage {
   }
 
   onVideoClick() {
-    console.log(123);
     if (!this.firstFlag) {
+      console.log(123);
       this.firstFlag = true;
+      // this.api.getMediaById('music').play();
       this.continue();
-      this.music.play();
     }
   }
   // 播放暂停

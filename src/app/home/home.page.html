@@ -25,15 +25,21 @@
       <div class="btn" (click)="clickTo(2)">会计师</div>
     </div>
   </div>
-  <vg-player
-    class="video-container"
-    (onPlayerReady)="onPlayerReady($event)"
-    id="audio"
-  >
-    <vg-overlay-play></vg-overlay-play>
-    <vg-buffering></vg-buffering>
-    <video [vgMedia]="media" #media preload loop>
-      <source src="assets/audio/bgm.mp3" type="audio/mp3" />
-    </video>
-  </vg-player>
+  <div id="audio" ontouchmove="return false;">
+    <vg-player class="video-container" (onPlayerReady)="onPlayerReady($event)">
+      <vg-overlay-play></vg-overlay-play>
+      <vg-buffering></vg-buffering>
+      <video
+        [vgMedia]="audio"
+        #audio
+        preload
+        x5-video-player-type="h5"
+        playsinline
+        webkit-playsinline
+        loop
+      >
+        <source src="assets/audio/bgm.mp3" type="audio/mp3" />
+      </video>
+    </vg-player>
+  </div>
 </ion-content>

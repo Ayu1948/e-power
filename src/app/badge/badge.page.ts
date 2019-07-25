@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ModalController } from '@ionic/angular';
 import { GlobalVariable } from '../globals';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-badge',
@@ -13,8 +14,9 @@ export class BadgePage {
   @Input() pageName: string;
   @Input() scenceId: string; // 0 包租婆 1 退休大爷 2 会计师
   getFlag = [false, false, false];
-  toDraw = { flag: true, id: 0 };
+  toDraw = { flag: false, id: 0 };
   constructor(
+    private location: Location,
     private router: Router,
     public modalController: ModalController,
     private http: HttpClient
@@ -74,11 +76,13 @@ export class BadgePage {
           this.getFlag[2] = true;
         }
       }
+      if (key === 'draw' && arr[key]) {
+        this.toDraw.flag = true;
+      }
     }
     for (let i = 0; i < this.getFlag.length; i++) {
       if (!this.getFlag[i]) {
         this.toDraw.id = i;
-        this.toDraw.flag = false;
         break;
       }
     }
@@ -109,7 +113,11 @@ export class BadgePage {
       pageName: this.pageName
     });
     if (id < 0) {
-      this.router.navigateByUrl('/draw');
-    } else this.router.navigateByUrl('/scene/' + id);
+      this.location.replaceState('/draw');
+      this.router.navigateByUrl('/draw', { skipLocationChange: true });
+    } else {
+      this.location.replaceState('/scene/' + id);
+      this.router.navigateByUrl('/scene/' + id, { skipLocationChange: true });
+    }
   }
 }

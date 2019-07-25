@@ -1,0 +1,17 @@
+<div id="audio" ontouchmove="return false;">
+  <vg-player class="video-container" (onPlayerReady)="onPlayerReady($event)">
+    <vg-overlay-play></vg-overlay-play>
+    <vg-buffering></vg-buffering>
+    <video
+      [vgMedia]="audio"
+      #audio
+      preload
+      x5-video-player-type="h5"
+      playsinline
+      webkit-playsinline
+      loop
+    >
+      <source src="assets/audio/bgm.mp3" type="audio/mp3" />
+    </video>
+  </vg-player>
+</div>
