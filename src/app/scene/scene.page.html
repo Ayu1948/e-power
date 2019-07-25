@@ -3,44 +3,12 @@
     <div class="mv">
       <vg-player
         class="video-container"
-        (onPlayerReady)="onPlayerReady($event)"
+        (onPlayerReady)="onPlayerReadyAudio($event)"
+        id="music"
       >
         <vg-overlay-play></vg-overlay-play>
         <vg-buffering></vg-buffering>
         <video
-          id="video"
-          [vgMedia]="media"
-          #media
-          [vgMaster]="true"
-          preload="auto"
-          playsinline
-          webkit-playsinline
-          playsinline="true"
-          x5-video-player-type="h5"
-          x5-video-player-fullscreen="true"
-          width="100%"
-          height="100%"
-          poster
-          [ngSwitch]="scenceId"
-        >
-          <source
-            *ngSwitchDefault
-            src="assets/video/landlord.mp4"
-            type="video/mp4"
-          />
-          <source
-            *ngSwitchCase="1"
-            src="assets/video/grandpa.mp4"
-            type="video/mp4"
-          />
-          <source
-            *ngSwitchCase="2"
-            src="assets/video/accountant.mp4"
-            type="video/mp4"
-          />
-        </video>
-        <!-- <video
-          id="music"
           [vgMedia]="audio"
           #audio
           preload
@@ -64,7 +32,44 @@
             type="audio/mp3"
             *ngSwitchCase="2"
           />
-        </video> -->
+        </video>
+      </vg-player>
+      <vg-player
+        class="video-container"
+        (onPlayerReady)="onPlayerReady($event)"
+      >
+        <vg-overlay-play></vg-overlay-play>
+        <vg-buffering></vg-buffering>
+        <video
+          [vgMedia]="media"
+          #media
+          playsinline
+          webkit-playsinline
+          playsinline="true"
+          x5-video-player-type="h5"
+          x5-video-player-fullscreen="true"
+          x5-video-orientation="portrait"
+          width="100%"
+          height="100%"
+          poster
+          [ngSwitch]="scenceId"
+        >
+          <source
+            *ngSwitchDefault
+            src="assets/video/landlord.mp4"
+            type="video/mp4"
+          />
+          <source
+            *ngSwitchCase="1"
+            src="assets/video/grandpa.mp4"
+            type="video/mp4"
+          />
+          <source
+            *ngSwitchCase="2"
+            src="assets/video/accountant.mp4"
+            type="video/mp4"
+          />
+        </video>
       </vg-player>
       <div
         [ngClass]="{ mask: true, show: !firstFlag }"
@@ -78,4 +83,9 @@
       </div>
     </div>
   </div>
+  <!-- <app-music
+    [scenceId]="scenceId"
+    id="app-music"
+    ontouchmove="return false;"
+  ></app-music> -->
 </ion-content>

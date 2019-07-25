@@ -85,12 +85,13 @@ export class ScenePage {
       }
     });
   }
-  // onPlayerReadyAudio(api: VgAPI) {
-  //   this.music = api;
-  //   console.log(this.music);
-  // }
+  onPlayerReadyAudio(api: VgAPI) {
+    this.music = api;
+    console.log(this.music);
+  }
   continue() {
-    this.api.getDefaultMedia().play();
+    this.api.play();
+    this.music.play();
     this.showBtn = false;
     console.log(this.api);
   }
@@ -114,36 +115,26 @@ export class ScenePage {
   }
   async toBadge() {
     // 传openid和当前视频id（用于更新badge记录）
-    const modal = await this.modalController.create({
-      component: BadgePage,
-      componentProps: {
-        pageName: 'scene',
-        scenceId: this.scenceId
-      },
-      cssClass: ['badge']
-    });
-    return await modal.present();
+    this.modalController
+      .create({
+        component: BadgePage,
+        componentProps: {
+          pageName: 'scene',
+          scenceId: this.scenceId
+        },
+        cssClass: ['badge']
+      })
+      .then(async modal => {
+        await modal.present();
+        await modal.onDidDismiss();
+      });
   }
 
   onVideoClick() {
     if (!this.firstFlag) {
       console.log(123);
       this.firstFlag = true;
-      // this.api.getMediaById('music').play();
       this.continue();
-    }
-  }
-  // 播放暂停
-  playPause() {
-    // var btn = document.getElementById('playbtn');
-    if (this.music.paused) {
-      this.music.play();
-      // btn.style.background =
-      //   'url(images/music/pictures/pause.png) no-repeat 10px'; // 改变播放暂停键的图标
-    } else {
-      this.music.pause(); // 停止音乐
-      // btn.style.background =
-      //   'url(images/music/pictures/play.png) no-repeat 10px';
     }
   }
 }

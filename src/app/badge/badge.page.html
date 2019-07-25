@@ -8,25 +8,29 @@
       <span
         class="badge"
         [ngClass]="{ get: getFlag[0] }"
-        (click)="clickTo(0)"
+        routerLink="/scene/0"
       ></span>
       <span
         class="badge"
         [ngClass]="{ get: getFlag[1] }"
-        (click)="clickTo(1)"
+        routerLink="/scene/1"
       ></span>
       <span
         class="badge"
         [ngClass]="{ get: getFlag[2] }"
-        (click)="clickTo(2)"
+        routerLink="/scene/2"
       ></span>
     </div>
     <p *ngIf="toDraw.flag">你获取了一次抽奖机会<br />去抽奖吧！</p>
     <p *ngIf="!toDraw.flag">点击未点亮的徽章按钮<br />集齐可获得抽奖机会哦！</p>
-    <div class="button" *ngIf="toDraw.flag" (click)="clickTo(-1)">
+    <div class="button" *ngIf="toDraw.flag" routerLink="/draw">
       去抽奖
     </div>
-    <div *ngIf="!toDraw.flag" class="button" (click)="clickTo(toDraw.id)">
+    <div
+      *ngIf="!toDraw.flag"
+      class="button"
+      [routerLink]="'/scene/' + toDraw.id"
+    >
       继续玩
     </div>
   </div>
