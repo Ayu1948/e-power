@@ -44,13 +44,24 @@
           />
         </video>
       </vg-player>
-      <audio
+      <vg-player
+        class="video-container"
+        (onPlayerReady)="onPlayerReadyAudio($event)"
+        id="audio"
+      >
+        <vg-overlay-play></vg-overlay-play>
+        <vg-buffering></vg-buffering>
+        <video [vgMedia]="audio" #audio preload loop>
+          <source [src]="musicList[scenceId]" type="audio/mp3" />
+        </video>
+      </vg-player>
+      <!-- <audio
         [src]="musicList[scenceId]"
         id="music"
         preload
         autoplay
         loop
-      ></audio>
+      ></audio> -->
       <!-- <audio src="../../assets/audio/grandpa.mp3" id="music1" preload loop></audio>
       <audio src="../../assets/audio/accountant.mp3" id="music2" preload loop></audio> -->
       <div

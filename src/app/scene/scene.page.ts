@@ -17,23 +17,24 @@ export class ScenePage {
   skipBtn = false;
   music;
   musicList = [
-    '../../assets/audio/landlord.mp3',
-    '../../assets/audio/grandpa.mp3',
-    '../../assets/audio/accountant.mp3'
+    'assets/audio/landlord.mp3',
+    'assets/audio/grandpa.mp3',
+    'assets/audio/accountant.mp3'
   ];
   constructor(public modalController: ModalController) {
     const href = window.location.href;
     this.scenceId = Number(href.substring(href.indexOf('/scene/') + 7));
+    console.log('inScene');
   }
   ngOnInit() {
-    this.music = document.getElementById('music');
+    // this.music = document.getElementById('music');
   }
   onPlayerReady(api: VgAPI) {
-    this.music.play();
+    // this.music.play();
     let flag1 = false;
     let flag2 = false;
     this.api = api;
-    this.api.play();
+    // this.api.play();
     this.api.getDefaultMedia().subscriptions.timeUpdate.subscribe(() => {
       if (!this.skipBtn) {
         switch (this.scenceId) {
@@ -83,6 +84,9 @@ export class ScenePage {
       }
     });
   }
+  onPlayerReadyAudio(api: VgAPI) {
+    this.music = api;
+  }
   continue() {
     this.api.play();
     // this.music.play();
@@ -121,6 +125,7 @@ export class ScenePage {
     if (!this.firstFlag) {
       this.firstFlag = true;
       this.continue();
+      this.music.play();
     }
   }
   // 播放暂停

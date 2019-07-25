@@ -21,14 +21,18 @@ export class AppComponent {
           'orientationchange' in window ? 'orientationchange' : 'resize', // 判断窗口有没有orientationchange这个方法，有就赋值给一个变量，没有就返回resize方法。
         recalc = function() {
           const clientWidth = docEl.clientWidth;
-          if (!clientWidth) { return; }
+          if (!clientWidth) {
+            return;
+          }
           // if(clientWidth>=560){
           //     clientWidth=560;
           // 把document的fontSize大小设置成跟窗口成一定比例的大小，从而实现响应式效果。
           // }
           docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
         };
-      if (!doc.addEventListener) { return; }
+      if (!doc.addEventListener) {
+        return;
+      }
       recalc();
       win.addEventListener(resizeEvt, recalc, false);
       // addEventListener事件方法接受三个参数：

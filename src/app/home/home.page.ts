@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import * as createjs from 'createjs-module';
 import { BadgePage } from '../badge/badge.page';
 import { ModalController } from '@ionic/angular';
+import { VgAPI } from 'videogular2/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +13,14 @@ import { ModalController } from '@ionic/angular';
 export class HomePage {
   src = 'bgm';
   checkModal = false;
-
-  constructor(public modalController: ModalController) {
-    console.log(createjs);
-    createjs.Sound.on('fileload', () => {
-      var instance = createjs.Sound.play('sound');
-      instance.volume = 0.5;
-    });
-    createjs.Sound.registerSound('assets/audio/bgm.mp3', 'sound');
+  api: VgAPI;
+  constructor(private router: Router, public modalController: ModalController) {
+    // console.log(createjs);
+    // createjs.Sound.on('fileload', () => {
+    //   var instance = createjs.Sound.play('sound');
+    //   instance.volume = 0.5;
+    // });
+    // createjs.Sound.registerSound('assets/audio/bgm.mp3', 'sound');
   }
   async toBadge() {
     let dis;
@@ -43,7 +45,12 @@ export class HomePage {
     }
   }
 
-  // jump(id) {
-  //   window.location.replace('./scene/' + id);
-  // }
+  onPlayerReady(api: VgAPI) {
+    this.api = api;
+    this.api.play();
+  }
+  clickTo(id) {
+    this.router.navigateByUrl('/scene/' + id, { skipLocationChange: true });
+    this.api.pause();
+  }
 }

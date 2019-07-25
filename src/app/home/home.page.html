@@ -1,6 +1,5 @@
 <ion-content>
   <div class="content">
-    <audio src="assets/audio/bgm.mp3" id="music" preload autoplay loop></audio>
     <div class="top-btn" (click)="toBadge()" id="badge">徽章</div>
     <div class="top-btn" routerLink="/award" id="award">奖励</div>
     <div class="text">
@@ -21,9 +20,20 @@
     <div class="character p2"></div>
     <div class="character p3"></div>
     <div class="btn-wrap">
-      <div class="btn" routerLink="/scene/0">包租婆</div>
-      <div class="btn" routerLink="/scene/1">退休老大爷</div>
-      <div class="btn" routerLink="/scene/2">会计师</div>
+      <div class="btn" (click)="clickTo(0)">包租婆</div>
+      <div class="btn" (click)="clickTo(1)">退休老大爷</div>
+      <div class="btn" (click)="clickTo(2)">会计师</div>
     </div>
   </div>
+  <vg-player
+    class="video-container"
+    (onPlayerReady)="onPlayerReady($event)"
+    id="audio"
+  >
+    <vg-overlay-play></vg-overlay-play>
+    <vg-buffering></vg-buffering>
+    <video [vgMedia]="media" #media preload loop>
+      <source src="assets/audio/bgm.mp3" type="audio/mp3" />
+    </video>
+  </vg-player>
 </ion-content>
