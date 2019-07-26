@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 })
 export class BadgePage {
   @Input() pageName: string;
-  @Input() scenceId: string; // 0 包租婆 1 退休大爷 2 会计师
+  @Input() scenceId: number; // 0 包租婆 1 退休大爷 2 会计师
   getFlag = [false, false, false];
   toDraw = { flag: false, id: 0 };
   constructor(
@@ -119,5 +119,32 @@ export class BadgePage {
       this.location.replaceState('/scene/' + id);
       this.router.navigateByUrl('/scene/' + id, { skipLocationChange: true });
     }
+  }
+  continue() {
+    // this.api.play();
+    // this.music.play();
+    // this.showBtn = false;
+    // console.log(this.api);
+    this.modalController.dismiss({
+      pageName: this.pageName
+    });
+  }
+  skip() {
+    switch (this.scenceId) {
+      case 1:
+        window.location.href =
+          'https://mp.weixin.qq.com/s/lCvjqrkLPG3vcAcxCukZAg';
+        break;
+      case 2:
+        window.location.href =
+          'https://mp.weixin.qq.com/s/Tx9e5kRvJaHrZNFm2Tr8AQ';
+        break;
+      default:
+        window.location.href =
+          'https://mp.weixin.qq.com/s/vUdPsGqTljwvZ7TpieTUuA';
+        break;
+    }
+    // this.skipBtn = true;
+    // this.toBadge();
   }
 }
