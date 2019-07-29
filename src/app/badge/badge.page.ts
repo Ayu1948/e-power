@@ -107,9 +107,6 @@ export class BadgePage {
     this.modalController.dismiss({
       pageName: this.pageName
     });
-    this.modalController.dismiss({
-      pageName: this.pageName
-    });
   }
   jump(id) {
     // if (id < 0) {

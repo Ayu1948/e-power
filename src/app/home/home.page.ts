@@ -5,6 +5,8 @@ import { ModalController } from '@ionic/angular';
 import { VgAPI } from 'videogular2/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { GlobalVariable } from '../globals';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +20,7 @@ export class HomePage {
   constructor(
     private location: Location,
     private router: Router,
+    private http: HttpClient,
     public modalController: ModalController
   ) {}
   async toBadge() {
@@ -54,4 +57,18 @@ export class HomePage {
   //   this.router.navigateByUrl('/scene/' + id, { skipLocationChange: true });
   //   this.api.pause();
   // }
+  clearBadge() {
+    this.http
+    .get(GlobalVariable.base_path + '/test/clearBadge', {
+      params: { openid: openid }
+    })
+    .subscribe(req => {console.log(req)})
+  }
+  clearDraw() {
+    this.http
+    .get(GlobalVariable.base_path + '/test/clearRecord', {
+      params: { openid: openid }
+    })
+    .subscribe(req => {console.log(req)})
+  }
 }

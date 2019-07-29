@@ -188,6 +188,24 @@
       top: 2rem;
     }
   }
+  .right-btn {
+    width: 1.47rem;
+    height: 0.76rem;
+    background: url(../../assets/images/home_btn.png) center center no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 1rem;
+    right: 0;
+    font-size: 0.23rem;
+    line-height: 0.76rem;
+    color: #fff;
+    text-align: center;
+    z-index: 5;
+    outline: none;
+    &#award {
+      top: 2rem;
+    }
+  }
 }
 
 @-webkit-keyframes fadeInDown {

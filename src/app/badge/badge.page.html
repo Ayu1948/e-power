@@ -26,12 +26,12 @@
     </div>
     <p *ngIf="toDraw.flag">你获取了一次抽奖机会<br />去抽奖吧！</p>
     <p *ngIf="!toDraw.flag">点击未点亮的徽章按钮<br />集齐可获得抽奖机会哦！</p>
-    <div class="button" *ngIf="toDraw.flag" routerLink="/draw">
+    <div class="button" *ngIf="toDraw.flag" (click)="sceneDismiss()" routerLink="/draw">
       去抽奖
     </div>
     <div
       *ngIf="!toDraw.flag"
-      class="button"
+      class="button" (click)="sceneDismiss()"
       [routerLink]="'/scene/' + toDraw.id"
     >
       继续玩

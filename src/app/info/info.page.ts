@@ -64,5 +64,6 @@ export class InfoPage {
   }
   closePop() {
     this.popShow = false;
+    location.href = '/award'
   }
 }

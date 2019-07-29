@@ -8,7 +8,6 @@
   <div class="ruleBtn" (click)="showRule()">活动规则</div>
   <canvas id="drawView" width="750" height="1200"></canvas>
   <div class="bottom-btn">
-    <a>一起玩</a>
     <a routerLink="/">回到首页</a>
   </div>
   <div id="pop" [ngClass]="{ show: popShow }">
@@ -21,7 +20,7 @@
       <ng-template #pityTpl>
         <span class="title"></span>
         <p>很遗憾！<br />离中奖就差一步之遥</p>
-        <div class="button">分享获取机会</div>
+        <div class="button" routerLink="/">分享获取机会</div>
       </ng-template>
       <ng-template #luckTpl>
         <span class="title"></span>
@@ -29,7 +28,6 @@
         <p>恭喜你！获得<br />{{ award.name }}</p>
         <div class="button" routerLink="/award">马上去领取</div>
       </ng-template>
-      <div class="close" (click)="close()"></div>
     </div>
     <div class="rule-pop" *ngIf="ruleShow">
       <div class="text">
