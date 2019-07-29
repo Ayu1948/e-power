@@ -1,23 +1,26 @@
 <div class="mask-wrap">
   <div class="mask" (click)="dismiss()">
-    <div class="badge-box"></div>
+    <div class="badge-box" *ngIf="skipBtn"></div>
   </div>
-  <div class="panel">
+  <div class="panel" *ngIf="skipBtn">
     <span class="title"></span>
     <div class="badge-wrap">
       <span
         class="badge"
         [ngClass]="{ get: getFlag[0] }"
+        (click)="sceneDismiss()"
         routerLink="/scene/0"
       ></span>
       <span
         class="badge"
         [ngClass]="{ get: getFlag[1] }"
+        (click)="sceneDismiss()"
         routerLink="/scene/1"
       ></span>
       <span
         class="badge"
         [ngClass]="{ get: getFlag[2] }"
+        (click)="sceneDismiss()"
         routerLink="/scene/2"
       ></span>
     </div>
@@ -34,8 +37,8 @@
       继续玩
     </div>
   </div>
-  <!-- <div class="btn-box" *ngIf=“”>
-    <div class="button" (click)="continue()">继续</div>
-    <div class="button" (click)="skip()">跳过</div>
-  </div> -->
+  <div class="btn-box" *ngIf="showBtn">
+    <div class="button" (click)="pauseRetrun(0)">继续</div>
+    <div class="button" (click)="pauseRetrun(-1)">跳过</div>
+  </div>
 </div>

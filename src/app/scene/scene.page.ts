@@ -44,11 +44,13 @@ export class ScenePage {
               this.api.getDefaultMedia().pause();
               flag1 = true;
               this.showBtn = true;
+              this.toPause();
             }
             if (this.api.getDefaultMedia().currentTime > 29 && !flag2) {
               this.api.getDefaultMedia().pause();
               flag2 = true;
               this.showBtn = true;
+              this.toPause();
             }
             break;
           case 2:
@@ -56,11 +58,13 @@ export class ScenePage {
               this.api.getDefaultMedia().pause();
               flag1 = true;
               this.showBtn = true;
+              this.toPause();
             }
             if (this.api.getDefaultMedia().currentTime > 29 && !flag2) {
               this.api.getDefaultMedia().pause();
               flag2 = true;
               this.showBtn = true;
+              this.toPause();
             }
             break;
           default:
@@ -68,11 +72,13 @@ export class ScenePage {
               this.api.getDefaultMedia().pause();
               flag1 = true;
               this.showBtn = true;
+              this.toPause();
             }
             if (this.api.getDefaultMedia().currentTime > 23 && !flag2) {
               this.api.getDefaultMedia().pause();
               flag2 = true;
               this.showBtn = true;
+              this.toPause();
             }
             break;
         }
@@ -96,22 +102,46 @@ export class ScenePage {
     console.log(this.api);
   }
   skip() {
-    switch (this.scenceId) {
-      case 1:
-        window.location.href =
-          'https://mp.weixin.qq.com/s/lCvjqrkLPG3vcAcxCukZAg';
-        break;
-      case 2:
-        window.location.href =
-          'https://mp.weixin.qq.com/s/Tx9e5kRvJaHrZNFm2Tr8AQ';
-        break;
-      default:
-        window.location.href =
-          'https://mp.weixin.qq.com/s/vUdPsGqTljwvZ7TpieTUuA';
-        break;
-    }
-    // this.skipBtn = true;
-    // this.toBadge();
+    // switch (this.scenceId) {
+    //   case 1:
+    //     window.location.href =
+    //       'https://mp.weixin.qq.com/s/lCvjqrkLPG3vcAcxCukZAg';
+    //     break;
+    //   case 2:
+    //     window.location.href =
+    //       'https://mp.weixin.qq.com/s/Tx9e5kRvJaHrZNFm2Tr8AQ';
+    //     break;
+    //   default:
+    //     window.location.href =
+    //       'https://mp.weixin.qq.com/s/vUdPsGqTljwvZ7TpieTUuA';
+    //     break;
+    // }
+    this.skipBtn = true;
+    this.toBadge();
+  }
+  async toPause() {
+    // 传openid和当前视频id（用于更新badge记录）
+    this.modalController
+      .create({
+        component: BadgePage,
+        componentProps: {
+          pageName: 'scene',
+          flag: 1,
+          showBtn: this.showBtn,
+          skipBtn: this.skipBtn
+        },
+        cssClass: ['badge']
+      })
+      .then(async modal => {
+        await modal.present();
+        const data = await modal.onDidDismiss();
+        if (data.data.flag === 0) {
+          this.continue();
+        } else {
+          this.skip();
+        }
+        
+      });
   }
   async toBadge() {
     // 传openid和当前视频id（用于更新badge记录）
@@ -120,16 +150,19 @@ export class ScenePage {
         component: BadgePage,
         componentProps: {
           pageName: 'scene',
-          scenceId: this.scenceId
+          flag: 0,
+          scenceId: this.scenceId,
+          showBtn: this.showBtn,
+          skipBtn: this.skipBtn
         },
         cssClass: ['badge']
       })
       .then(async modal => {
         await modal.present();
         await modal.onDidDismiss();
+        location.reload();
       });
   }
-
   onVideoClick() {
     if (!this.firstFlag) {
       console.log(123);

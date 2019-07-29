@@ -12,7 +12,10 @@ import { Location } from '@angular/common';
 })
 export class BadgePage {
   @Input() pageName: string;
+  @Input() flag: number; // 0 徽章 1 暂停
   @Input() scenceId: number; // 0 包租婆 1 退休大爷 2 会计师
+  @Input() showBtn: boolean;
+  @Input() skipBtn: boolean;
   getFlag = [false, false, false];
   toDraw = { flag: false, id: 0 };
   constructor(
@@ -25,7 +28,9 @@ export class BadgePage {
     console.log(this.pageName);
     // 接收传过来的视频id
     if (this.pageName === 'scene') {
-      this.addBadge(this.scenceId);
+      if (this.flag === 0) {
+        this.addBadge(this.scenceId);
+      }
     } else if (this.pageName === 'home') {
       this.getBadge();
     }
@@ -97,6 +102,15 @@ export class BadgePage {
       });
     }
   }
+  sceneDismiss() {
+    console.log('click');
+    this.modalController.dismiss({
+      pageName: this.pageName
+    });
+    this.modalController.dismiss({
+      pageName: this.pageName
+    });
+  }
   jump(id) {
     // if (id < 0) {
     //   window.location.replace('/draw');
@@ -119,6 +133,12 @@ export class BadgePage {
       this.location.replaceState('/scene/' + id);
       this.router.navigateByUrl('/scene/' + id, { skipLocationChange: true });
     }
+  }
+  pauseRetrun(flag) {
+    this.modalController.dismiss({
+      pageName: this.pageName,
+      flag: flag
+    });
   }
   continue() {
     // this.api.play();

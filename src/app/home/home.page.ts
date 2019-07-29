@@ -21,7 +21,6 @@ export class HomePage {
     public modalController: ModalController
   ) {}
   async toBadge() {
-    let dis;
     if (!this.checkModal) {
       this.checkModal = true;
       // 传openid和当前视频id（用于更新badge记录）
@@ -29,15 +28,17 @@ export class HomePage {
         .create({
           component: BadgePage,
           componentProps: {
-            pageName: 'home'
+            pageName: 'home',
+            skipBtn: true
           },
           cssClass: ['badge']
         })
         .then(async modal => {
           modal.present();
-          dis = await modal.onDidDismiss();
+          const dis = await modal.onDidDismiss();
           console.log(this.checkModal);
           this.checkModal = false;
+          this.api.pause();
         });
       // return await ;
     }
@@ -45,11 +46,12 @@ export class HomePage {
 
   onPlayerReady(api: VgAPI) {
     this.api = api;
+    console.log(this.api);
     this.api.play();
   }
-  clickTo(id) {
-    this.location.replaceState('/scene/' + id);
-    this.router.navigateByUrl('/scene/' + id, { skipLocationChange: true });
-    this.api.pause();
-  }
+  // clickTo(id) {
+  //   this.location.replaceState('/scene/' + id);
+  //   this.router.navigateByUrl('/scene/' + id, { skipLocationChange: true });
+  //   this.api.pause();
+  // }
 }
