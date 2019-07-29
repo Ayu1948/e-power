@@ -137,31 +137,4 @@ export class BadgePage {
       flag: flag
     });
   }
-  continue() {
-    // this.api.play();
-    // this.music.play();
-    // this.showBtn = false;
-    // console.log(this.api);
-    this.modalController.dismiss({
-      pageName: this.pageName
-    });
-  }
-  skip() {
-    switch (this.scenceId) {
-      case 1:
-        window.location.href =
-          'https://mp.weixin.qq.com/s/lCvjqrkLPG3vcAcxCukZAg';
-        break;
-      case 2:
-        window.location.href =
-          'https://mp.weixin.qq.com/s/Tx9e5kRvJaHrZNFm2Tr8AQ';
-        break;
-      default:
-        window.location.href =
-          'https://mp.weixin.qq.com/s/vUdPsGqTljwvZ7TpieTUuA';
-        break;
-    }
-    // this.skipBtn = true;
-    // this.toBadge();
-  }
 }

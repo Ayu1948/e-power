@@ -3,39 +3,6 @@
     <div class="mv">
       <vg-player
         class="video-container"
-        (onPlayerReady)="onPlayerReadyAudio($event)"
-        id="music"
-      >
-        <vg-overlay-play></vg-overlay-play>
-        <vg-buffering></vg-buffering>
-        <video
-          [vgMedia]="audio"
-          #audio
-          preload
-          playsinline
-          webkit-playsinline
-          loop
-          [ngSwitch]="scenceId"
-        >
-          <source
-            src="assets/audio/landlord.mp3"
-            type="audio/mp3"
-            *ngSwitchDefault
-          />
-          <source
-            src="assets/audio/grandpa.mp3"
-            type="audio/mp3"
-            *ngSwitchCase="1"
-          />
-          <source
-            src="assets/audio/accountant.mp3"
-            type="audio/mp3"
-            *ngSwitchCase="2"
-          />
-        </video>
-      </vg-player>
-      <vg-player
-        class="video-container"
         (onPlayerReady)="onPlayerReady($event)"
       >
         <vg-overlay-play></vg-overlay-play>
@@ -68,6 +35,40 @@
             *ngSwitchCase="2"
             src="assets/video/accountant.mp4"
             type="video/mp4"
+          />
+        </video>
+      </vg-player>
+      <vg-player
+        class="video-container"
+        (onPlayerReady)="onPlayerReadyAudio($event)"
+        id="music"
+        οnkeydοwn="if(event.keyCode==13){return false;}"
+      >
+        <vg-overlay-play></vg-overlay-play>
+        <vg-buffering></vg-buffering>
+        <video
+          [vgMedia]="audio"
+          #audio
+          preload
+          playsinline
+          webkit-playsinline
+          loop
+          [ngSwitch]="scenceId"
+        >
+          <source
+            src="assets/audio/landlord.mp3"
+            type="audio/mp3"
+            *ngSwitchDefault
+          />
+          <source
+            src="assets/audio/grandpa.mp3"
+            type="audio/mp3"
+            *ngSwitchCase="1"
+          />
+          <source
+            src="assets/audio/accountant.mp3"
+            type="audio/mp3"
+            *ngSwitchCase="2"
           />
         </video>
       </vg-player>
