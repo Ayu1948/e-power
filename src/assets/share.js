@@ -1,9 +1,9 @@
 ﻿var shareData = {
-    img_url		: "assets/imgs/badge-light.jpg",
-	site_link	: 'http://promo.itechrich.cn/content/testwx',
-    messageDesc	: '假如世界上没有e电通，生活将会失去很多乐趣！',
+  img_url		: "assets/images/share.jpg",
+	site_link	: 'http://promo.itechrich.cn/content/redirect',
+  messageDesc	: '假如世界上没有e电通，生活将会失去很多乐趣！',
 	circleDesc	: '假如世界上没有e电通',
-    title		: '假如世界上没有e电通'
+  title		: '假如世界上没有e电通'
 };
 
 wx.ready(function() {
@@ -44,13 +44,13 @@ wx.ready(function() {
 //取得签名
 $.ajax({
 	type	: "GET",
-    url		: ApiPrefix + 'share/getJssdkConfig',//
+    url		: 'share/getJssdkConfig',//
 	async	:false,
 	cache	:false,
 	success	:function(result) {
 		result = result.data;
 		wx.config({
-			debug		: true,
+			debug		: false,
 			appId		: result.appId,
 			timestamp	: result.timestamp,
 			nonceStr	: result.nonceStr,

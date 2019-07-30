@@ -90,6 +90,9 @@ export class BadgePage {
         this.toDraw.id = i;
         break;
       }
+      if (i === 2 && this.getFlag[2] && !this.toDraw.flag) {
+        this.dismiss();
+      }
     }
     console.log(this.toDraw);
   }

@@ -17,12 +17,18 @@ export class HomePage {
   src = 'bgm';
   checkModal = false;
   api: VgAPI;
+  music;
   constructor(
     private location: Location,
     private router: Router,
     private http: HttpClient,
     public modalController: ModalController
   ) {}
+  ngOnInit() {
+    // this.music = document.getElementById('music');
+    // this.music.play();
+    // $('.content').click(()=> this.music.play())
+  }
   async toBadge() {
     if (!this.checkModal) {
       this.checkModal = true;
@@ -57,6 +63,9 @@ export class HomePage {
   //   this.router.navigateByUrl('/scene/' + id, { skipLocationChange: true });
   //   this.api.pause();
   // }
+  pauseMusic() {
+    // this.music.pause();
+  }
   clearBadge() {
     this.http
     .get(GlobalVariable.base_path + '/test/clearBadge', {
