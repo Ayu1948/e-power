@@ -32,13 +32,13 @@
     <div
       *ngIf="!toDraw.flag"
       class="button" (click)="sceneDismiss()"
-      [routerLink]="'/scene/' + toDraw.id"
+      routerLink="/"
     >
       继续玩
     </div>
   </div>
   <div class="btn-box" *ngIf="showBtn">
-    <div class="button" (click)="pauseRetrun(0)">继续</div>
-    <div class="button" (click)="pauseRetrun(-1)">跳过</div>
+    <div class="button" (click)="pauseRetrun(0)">继续玩</div>
+    <div class="button" (click)="pauseRetrun(-1)">不等了</div>
   </div>
 </div>

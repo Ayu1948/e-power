@@ -27,7 +27,27 @@ export class HomePage {
   ngOnInit() {
     // this.music = document.getElementById('music');
     // this.music.play();
-    // $('.content').click(()=> this.music.play())
+    
+    const audio = document.createElement('audio');
+    let preload = document.createAttribute('preload');
+    let autoplay = document.createAttribute('autoplay');
+    let loop = document.createAttribute('loop');
+    let src = document.createAttribute('src');
+    let id = document.createAttribute('id');
+    preload.value = 'true';
+    autoplay.value = 'true';
+    loop.value = 'true';
+    src.value = 'assets/audio/bgm.mp3';
+    id.value = 'audio';
+    audio.setAttributeNode(preload);
+    audio.setAttributeNode(autoplay);
+    audio.setAttributeNode(loop);
+    audio.setAttributeNode(src);
+    audio.setAttributeNode(id);
+    // ("<audio src='assets/audio/bgm.mp3' preload autoplay loop></audio>");
+    document.getElementById('music').appendChild(audio);
+    this.music = document.getElementById('audio');
+    this.music.play();
   }
   async toBadge() {
     if (!this.checkModal) {
@@ -64,7 +84,11 @@ export class HomePage {
   //   this.api.pause();
   // }
   pauseMusic() {
+    // console.log(222)
     // this.music.pause();
+    // this.music.currentTime = 0;
+    this.music.pause();
+    document.getElementById('music').innerHTML = '';
   }
   clearBadge() {
     this.http
