@@ -40,13 +40,13 @@ export class ScenePage {
       if (!this.skipBtn) {
         switch (this.scenceId) {
           case 1:
-            if (this.api.getDefaultMedia().currentTime > 9.5 && !flag1) {
+            if (this.api.getDefaultMedia().currentTime > 12 && !flag1) {
               this.api.getDefaultMedia().pause();
               flag1 = true;
               this.showBtn = true;
               this.toPause();
             }
-            if (this.api.getDefaultMedia().currentTime > 29 && !flag2) {
+            if (this.api.getDefaultMedia().currentTime > 30 && !flag2) {
               this.api.getDefaultMedia().pause();
               flag2 = true;
               this.showBtn = true;
@@ -54,13 +54,13 @@ export class ScenePage {
             }
             break;
           case 2:
-            if (this.api.getDefaultMedia().currentTime > 17 && !flag1) {
+            if (this.api.getDefaultMedia().currentTime > 19 && !flag1) {
               this.api.getDefaultMedia().pause();
               flag1 = true;
               this.showBtn = true;
               this.toPause();
             }
-            if (this.api.getDefaultMedia().currentTime > 29 && !flag2) {
+            if (this.api.getDefaultMedia().currentTime > 29.5 && !flag2) {
               this.api.getDefaultMedia().pause();
               flag2 = true;
               this.showBtn = true;
@@ -68,13 +68,13 @@ export class ScenePage {
             }
             break;
           default:
-            if (this.api.getDefaultMedia().currentTime > 8 && !flag1) {
+            if (this.api.getDefaultMedia().currentTime > 15 && !flag1) {
               this.api.getDefaultMedia().pause();
               flag1 = true;
               this.showBtn = true;
               this.toPause();
             }
-            if (this.api.getDefaultMedia().currentTime > 23 && !flag2) {
+            if (this.api.getDefaultMedia().currentTime > 25 && !flag2) {
               this.api.getDefaultMedia().pause();
               flag2 = true;
               this.showBtn = true;
@@ -91,13 +91,13 @@ export class ScenePage {
       }
     });
   }
-  onPlayerReadyAudio(api: VgAPI) {
-    this.music = api;
-    console.log(this.music);
-  }
+  // onPlayerReadyAudio(api: VgAPI) {
+  //   this.music = api;
+  //   console.log(this.music);
+  // }
   continue() {
     this.api.play();
-    this.music.play();
+    // this.music.play();
     this.showBtn = false;
     console.log(this.api);
   }
